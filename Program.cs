@@ -1,4 +1,4 @@
-using RazorPageWebApp1.DatabaseContext;
+using DisneyMoviesWatchlist.DatabaseContext;
 
 var builder = WebApplication.CreateBuilder(args);
 

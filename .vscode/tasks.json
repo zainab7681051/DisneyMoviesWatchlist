@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/RazorPageWebApp1.csproj",
+                "${workspaceFolder}/DisneyMoviesWatchlist.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/RazorPageWebApp1.csproj",
+                "${workspaceFolder}/DisneyMoviesWatchlist.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/RazorPageWebApp1.csproj"
+                "${workspaceFolder}/DisneyMoviesWatchlist.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

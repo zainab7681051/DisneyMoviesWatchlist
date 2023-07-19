@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RazorPageWebApp1.Models;
+using DisneyMoviesWatchlist.Models;
 
-namespace RazorPageWebApp1.DatabaseContext;
+namespace DisneyMoviesWatchlist.DatabaseContext;
 
 public partial class DisneyMoviesDbContext : DbContext
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace RazorPageWebApp1.Pages;
+namespace DisneyMoviesWatchlist.Pages;
 
 public class PrivacyModel : PageModel
 {

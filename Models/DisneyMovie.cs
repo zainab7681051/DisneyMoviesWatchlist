@@ -1,4 +1,4 @@
-﻿namespace RazorPageWebApp1.Models;
+﻿namespace DisneyMoviesWatchlist.Models;
 
 public partial class DisneyMovie
 {
