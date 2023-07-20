@@ -15,13 +15,13 @@
                 <img src="@Model.movie.Image" alt="@Model.movie.Title+ ' '+@Model.movie.Year" class="img-fluid rounded">
             </div>
             <div class="col-md-8">
-                <h5>Rating: @Model.movie.Rating / 10</h5>
-                <h5>Metascore: @Model.movie.Metascore / 100</h5>
-                <h5>Runtime: @Model.movie.Runtime</h5>
-                <h5>Genre: @Model.movie.Genre</h5>
-                <h5>Summary: @Model.movie.Summary</h5>
-                <h5>Director(s): @Model.movie.Directors</h5>
-                <h5>Stars: @Model.movie.Stars</h5>
+                <h5>Rating: <span>@Model.movie.Rating / 10</span></h5>
+                <h5>Metascore: <span>@Model.movie.Metascore / 100</span></h5>
+                <h5>Runtime: <span>@Model.movie.Runtime</span></h5>
+                <h5>Genre: <span>@Model.movie.Genre</span></h5>
+                <h5>Summary: <span>@Model.movie.Summary</span></h5>
+                <h5>Director(s): <span>@Model.movie.Directors</span></h5>
+                <h5>Stars: <span>@Model.movie.Stars</span></h5>
                 <a href="https://www.imdb.com/@Model.movie.Link">
                     <h6>IMDB page</h6>
                 </a>

@@ -29,3 +29,7 @@ a.title-link {
   color: #000;
   text-decoration: none;
 }
+
+h5 span {
+  font-weight: 400;
+}
