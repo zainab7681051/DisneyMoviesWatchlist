@@ -11,6 +11,8 @@ public class MovieDto
     public string? Year { get; set; }
 
     public string? Image { get; set; }
+    public string? Rating { get; set; }
+
 
 }
 public static class MovieExt
@@ -22,7 +24,8 @@ public static class MovieExt
             MovieId = movie.MovieId,
             Title = movie.Title ?? "no title",
             Year = movie.Year ?? "no year",
-            Image = movie.Image ?? ""
+            Image = movie.Image ?? "",
+            Rating = movie.Rating ?? "no rating"
         };
     }
 }

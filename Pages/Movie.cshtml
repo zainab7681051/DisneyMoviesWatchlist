@@ -3,11 +3,42 @@
 @{
     ViewData["Title"] = @Model.movie?.Title ?? "404";
 }
-@if (Model.movie != null)
-{
-    <h1>@Model.movie.Title</h1>
-}
-else
-{
-    <h1>404, Movie does not exist.</h1>
-}
+<div class="container mt-4">
+
+    @if (Model.movie != null)
+    {
+        <div class="text-center">
+            <h1 class="display-4">@Model.movie.Title - @Model.movie.Year</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <img src="@Model.movie.Image" alt="@Model.movie.Title+ ' '+@Model.movie.Year" class="img-fluid rounded">
+            </div>
+            <div class="col-md-8">
+                <h5>Rating: @Model.movie.Rating / 10</h5>
+                <h5>Metascore: @Model.movie.Metascore / 100</h5>
+                <h5>Runtime: @Model.movie.Runtime</h5>
+                <h5>Genre: @Model.movie.Genre</h5>
+                <h5>Summary: @Model.movie.Summary</h5>
+                <h5>Director(s): @Model.movie.Directors</h5>
+                <h5>Stars: @Model.movie.Stars</h5>
+                <a href="https://www.imdb.com/@Model.movie.Link">
+                    <h6>IMDB page</h6>
+                </a>
+            </div>
+            @* default style for all h tags//
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        line-height: 1.2;
+
+        defaoult size for h5//
+        font-size: 1.25re
+        *@
+        </div>
+    }
+    else
+    {
+        <h1>404, Movie does not exist.</h1>
+    }
+</div>

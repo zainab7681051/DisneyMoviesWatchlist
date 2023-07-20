@@ -20,10 +20,10 @@
                             <img src="@movie.Image" class="card-img-top" alt="@movie.Title+' '+@movie.Year">
                         </a>
                         <div class="card-body">
-                            <a asp-page="./Movie" asp-route-id="@movie.MovieId">
-                                <h5 class="card-title">@movie.Title</h5>
+                            <a style="text-decoration: none;" asp-page="./Movie" asp-route-id="@movie.MovieId">
+                                <h5 class="card-title">@movie.Title - @movie.Year</h5>
                             </a>
-                            <p class="card-text">@movie.Year</p>
+                            <p class="card-text bold">@movie.Rating / 10</p>
                         </div>
                         @* <button class="btn btn-primary mb-2">Add to List</button> *@
                     </div>
