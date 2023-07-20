@@ -1,6 +1,6 @@
 ﻿namespace DisneyMoviesWatchlist.Models;
 
-public partial class DisneyMovie
+public partial class Movie
 {
     public int MovieId { get; set; }
 

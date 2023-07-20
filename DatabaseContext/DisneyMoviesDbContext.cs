@@ -14,14 +14,14 @@ public partial class DisneyMoviesDbContext : DbContext
     {
     }
 
-    public virtual DbSet<DisneyMovie> DisneyMovies { get; set; }
+    public virtual DbSet<Movie> DisneyMovies { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlite("Name=ConnectionStrings:DisneyMoviesDB");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<DisneyMovie>(entity =>
+        modelBuilder.Entity<Movie>(entity =>
         {
             entity.HasKey(e => e.MovieId);
 

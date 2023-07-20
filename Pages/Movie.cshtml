@@ -1,0 +1,13 @@
+@page "{id:int}"
+@model MovieModel
+@{
+    ViewData["Title"] = @Model.movie?.Title ?? "404";
+}
+@if (Model.movie != null)
+{
+    <h1>@Model.movie.Title</h1>
+}
+else
+{
+    <h1>404, Movie does not exist.</h1>
+}

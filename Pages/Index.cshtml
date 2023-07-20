@@ -5,6 +5,36 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Movies</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        @if (Model.movies != null)
+        {
+            @foreach (var movie in Model.movies)
+            {
+                <div class="col-md-4">
+                    <div class="card mt-2">
+                        <a asp-page="./Movie" asp-route-id="@movie.MovieId">
+                            <img src="@movie.Image" class="card-img-top" alt="@movie.Title+' '+@movie.Year">
+                        </a>
+                        <div class="card-body">
+                            <a asp-page="./Movie" asp-route-id="@movie.MovieId">
+                                <h5 class="card-title">@movie.Title</h5>
+                            </a>
+                            <p class="card-text">@movie.Year</p>
+                        </div>
+                        @* <button class="btn btn-primary mb-2">Add to List</button> *@
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="text-center">
+                <h5>no movies are available rigth now.</h5>
+            </div>
+        }
+    </div>
 </div>
