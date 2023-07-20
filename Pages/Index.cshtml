@@ -20,7 +20,7 @@
                             <img src="@movie.Image" class="card-img-top" alt="@movie.Title+' '+@movie.Year">
                         </a>
                         <div class="card-body">
-                            <a style="text-decoration: none;" asp-page="./Movie" asp-route-id="@movie.MovieId">
+                            <a class="title-link" asp-page="./Movie" asp-route-id="@movie.MovieId">
                                 <h5 class="card-title">@movie.Title - @movie.Year</h5>
                             </a>
                             <p class="card-text bold">@movie.Rating / 10</p>

@@ -24,3 +24,8 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+a.title-link {
+  color: #000;
+  text-decoration: none;
+}
