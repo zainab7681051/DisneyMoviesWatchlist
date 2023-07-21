@@ -1,8 +1,8 @@
 ﻿using DisneyMoviesWatchlist.DatabaseContext;
-using DisneyMoviesWatchlist.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using DisneyMoviesWatchlist.Extensions;
+
 namespace DisneyMoviesWatchlist.Pages;
 
 public class IndexModel : PageModel
@@ -17,8 +17,17 @@ public class IndexModel : PageModel
     }
 
     public List<MovieDto>? movies { get; set; }
+    [BindProperty(SupportsGet = true)]
+    public string? query { get; set; }
     public void OnGet()
     {
-        movies = context.DisneyMovies.Select(e => e.MovieLessDetail()).ToList();
+        var Movies = from m in context.DisneyMovies
+                     select m;
+        if (!string.IsNullOrEmpty(query))
+        {
+            Movies = Movies.Where(s => s.Title!.Contains(query));
+        }
+        movies = Movies.Select(e => e.MovieLessDetail()).ToList();
+
     }
 }

@@ -10,24 +10,42 @@
 
 <div class="container">
     <div class="row">
+        <form class="form-inline my-4 justify-content-center">
+            <div class="input-group">
+                <input type="text" class="form-control" asp-for="query" placeholder="search for movie title...">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary mx-2">Search</button>
+                </div>
+            </div>
+        </form>
         @if (Model.movies != null)
         {
-            @foreach (var movie in Model.movies)
+            @if (!Model.movies.Any() && !string.IsNullOrEmpty(Model.query))
             {
-                <div class="col-md-4">
-                    <div class="card mt-2">
-                        <a asp-page="./Movie" asp-route-id="@movie.MovieId">
-                            <img src="@movie.Image" class="card-img-top" alt="@movie.Title+' '+@movie.Year">
-                        </a>
-                        <div class="card-body">
-                            <a class="title-link" asp-page="./Movie" asp-route-id="@movie.MovieId">
-                                <h5 class="card-title">@movie.Title - @movie.Year</h5>
-                            </a>
-                            <p class="card-text bold">@movie.Rating / 10</p>
-                        </div>
-                        @* <button class="btn btn-primary mb-2">Add to List</button> *@
-                    </div>
+                <div class="text-center">
+                    <h5>no search results for "@Model.query".</h5>
                 </div>
+            }
+            else
+            {
+
+                @foreach (var movie in Model.movies)
+                {
+                    <div class="col-md-4">
+                        <div class="card mt-2">
+                            <a asp-page="./Movie" asp-route-id="@movie.MovieId">
+                                <img src="@movie.Image" class="card-img-top" alt="@movie.Title+' '+@movie.Year">
+                            </a>
+                            <div class="card-body">
+                                <a class="title-link" asp-page="./Movie" asp-route-id="@movie.MovieId">
+                                    <h5 class="card-title">@movie.Title - @movie.Year</h5>
+                                </a>
+                                <p class="card-text bold">@movie.Rating / 10</p>
+                            </div>
+                            @* <button class="btn btn-primary mb-2">Add to List</button> *@
+                        </div>
+                    </div>
+                }
             }
         }
         else
