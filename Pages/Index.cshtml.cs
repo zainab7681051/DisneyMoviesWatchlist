@@ -17,6 +17,7 @@ public class IndexModel : PageModel
     }
 
     public List<MovieDto>? movies { get; set; }
+
     [BindProperty(SupportsGet = true)]
     public string? query { get; set; }
     public void OnGet()
