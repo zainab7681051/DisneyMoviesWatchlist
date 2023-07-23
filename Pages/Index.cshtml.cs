@@ -29,6 +29,5 @@ public class IndexModel : PageModel
             Movies = Movies.Where(s => s.Title!.Contains(query));
         }
         movies = Movies.Select(e => e.MovieLessDetail()).ToList();
-
     }
 }
