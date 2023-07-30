@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using DisneyMoviesWatchlist.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace DisneyMoviesWatchlist.DatabaseContext;
 
-public partial class DisneyMoviesDbContext : DbContext
+public partial class DisneyMoviesDbContext : IdentityDbContext
 {
     public DisneyMoviesDbContext()
     {
@@ -21,6 +22,7 @@ public partial class DisneyMoviesDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.UseCollation("NOCASE");
         modelBuilder.Entity<Movie>(entity =>
         {
             entity.HasKey(e => e.MovieId);
