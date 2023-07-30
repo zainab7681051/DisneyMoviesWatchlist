@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using DisneyMoviesWatchlist.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace DisneyMoviesWatchlist.DatabaseContext;
-
 public partial class DisneyMoviesDbContext : IdentityDbContext
 {
     public DisneyMoviesDbContext()
@@ -22,7 +22,6 @@ public partial class DisneyMoviesDbContext : IdentityDbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.UseCollation("NOCASE");
         modelBuilder.Entity<Movie>(entity =>
         {
             entity.HasKey(e => e.MovieId);
@@ -41,9 +40,8 @@ public partial class DisneyMoviesDbContext : IdentityDbContext
             entity.Property(e => e.Title).HasColumnName("title");
             entity.Property(e => e.Year).HasColumnName("year");
         });
+        modelBuilder.UseCollation("NOCASE");
+        base.OnModelCreating(modelBuilder);
 
-        OnModelCreatingPartial(modelBuilder);
     }
-
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
