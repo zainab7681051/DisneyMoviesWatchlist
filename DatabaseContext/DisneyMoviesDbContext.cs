@@ -22,6 +22,9 @@ public partial class DisneyMoviesDbContext : IdentityDbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.HasDefaultSchema("Identity");
+
         modelBuilder.Entity<Movie>(entity =>
         {
             entity.HasKey(e => e.MovieId);
@@ -41,7 +44,6 @@ public partial class DisneyMoviesDbContext : IdentityDbContext
             entity.Property(e => e.Year).HasColumnName("year");
         });
         modelBuilder.UseCollation("NOCASE");
-        base.OnModelCreating(modelBuilder);
 
     }
 }
