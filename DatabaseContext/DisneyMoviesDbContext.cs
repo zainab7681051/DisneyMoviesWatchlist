@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 
 namespace DisneyMoviesWatchlist.DatabaseContext;
-public partial class DisneyMoviesDbContext : IdentityDbContext
+public partial class DisneyMoviesDbContext : IdentityDbContext<AppUser>
 {
     public DisneyMoviesDbContext()
     {
@@ -15,7 +15,8 @@ public partial class DisneyMoviesDbContext : IdentityDbContext
     {
     }
 
-    public virtual DbSet<Movie> DisneyMovies { get; set; }
+    public DbSet<Movie> DisneyMovies { get; set; }
+
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlite("Name=ConnectionStrings:DisneyMoviesDB");
@@ -23,13 +24,12 @@ public partial class DisneyMoviesDbContext : IdentityDbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.HasDefaultSchema("Identity");
 
         modelBuilder.Entity<Movie>(entity =>
         {
             entity.HasKey(e => e.MovieId);
 
-            entity.ToTable("disney_movies");
+            entity.ToTable("empty");
 
             entity.Property(e => e.Directors).HasColumnName("directors");
             entity.Property(e => e.Genre).HasColumnName("genre");

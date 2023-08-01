@@ -42,7 +42,11 @@
                                 </a>
                                 <p class="card-text bold">@movie.Rating / 10</p>
                             </div>
-                            @* <button class="btn btn-primary mb-2">Add to List</button> *@
+
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <button class="btn btn-primary mb-2">Add to List</button>
+                            }
                         </div>
                     </div>
                 }
