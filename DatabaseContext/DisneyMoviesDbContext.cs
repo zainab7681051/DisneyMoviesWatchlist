@@ -2,6 +2,7 @@
 using DisneyMoviesWatchlist.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DisneyMoviesWatchlist.DatabaseContext;
 public partial class DisneyMoviesDbContext : IdentityDbContext<AppUser>
@@ -24,7 +25,6 @@ public partial class DisneyMoviesDbContext : IdentityDbContext<AppUser>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
         modelBuilder.Entity<Movie>(entity =>
         {
             entity.HasKey(e => e.MovieId);
@@ -44,6 +44,13 @@ public partial class DisneyMoviesDbContext : IdentityDbContext<AppUser>
             entity.Property(e => e.Year).HasColumnName("year");
         });
         modelBuilder.UseCollation("NOCASE");
+        var converter = new ValueConverter<int[], string>(
+                v => string.Join(",", v),
+                v => v.Split(",", StringSplitOptions.RemoveEmptyEntries)
+                .Select(val => int.Parse(val)).ToArray());
+        modelBuilder.Entity<AppUser>()
+                .Property(e => e.MovieIdWatchist)
+                .HasConversion(converter);
 
     }
 }
