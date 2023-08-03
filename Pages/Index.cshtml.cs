@@ -34,8 +34,8 @@ public class IndexModel : PageModel
         {
             Movies = Movies.Where(s => s.Title!.Contains(query));
         }
-        this.movies = Movies.Select(e => e.MovieLessDetail()).ToList();
-        this.MoviesAndUsers = context.MoviesAndUsers.ToList();
+        movies = Movies.Select(e => e.MovieLessDetail()).ToList();
+        MoviesAndUsers = context.MoviesAndUsers.ToList();
 
     }
     public IActionResult OnPostAdd(int id)
@@ -54,7 +54,7 @@ public class IndexModel : PageModel
     public bool Bookmarked(int MovieId)
     {
         var userId = userManager.GetUserId(User);
-        var x = context.MoviesAndUsers.Find(new { userId, MovieId });
+        var x = context.MoviesAndUsers.Find(userId, MovieId);
         if (x is null) return false;
         return true;
     }
