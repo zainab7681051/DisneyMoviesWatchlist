@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using DisneyMoviesWatchlist.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DisneyMoviesWatchlist.DatabaseContext;
-public partial class DisneyMoviesDbContext : IdentityDbContext<AppUser>
+public partial class DisneyMoviesDbContext : IdentityDbContext
 {
     public DisneyMoviesDbContext()
     {
@@ -16,7 +15,9 @@ public partial class DisneyMoviesDbContext : IdentityDbContext<AppUser>
     {
     }
 
+
     public DbSet<Movie> DisneyMovies { get; set; }
+    public DbSet<MovieAndUser> MoviesAndUsers { get; set; }
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -44,13 +45,44 @@ public partial class DisneyMoviesDbContext : IdentityDbContext<AppUser>
             entity.Property(e => e.Year).HasColumnName("year");
         });
         modelBuilder.UseCollation("NOCASE");
-        var converter = new ValueConverter<int[], string>(
-                v => string.Join(",", v),
-                v => v.Split(",", StringSplitOptions.RemoveEmptyEntries)
-                .Select(val => int.Parse(val)).ToArray());
-        modelBuilder.Entity<AppUser>()
-                .Property(e => e.MovieIdWatchist)
-                .HasConversion(converter);
+        modelBuilder.Entity<MovieAndUser>(e =>
+        {
+            e.HasKey(ee => new { ee.UserId, ee.MovieId });
+        });
 
     }
+
+
+}
+public class Movie
+{
+    public int MovieId { get; set; }
+
+    public string? Title { get; set; }
+
+    public string? Year { get; set; }
+
+    public string? Link { get; set; }
+
+    public string? Image { get; set; }
+
+    public string? Runtime { get; set; }
+
+    public string? Genre { get; set; }
+
+    public string? Summary { get; set; }
+
+    public string? Rating { get; set; }
+
+    public string? Metascore { get; set; }
+
+    public string? Directors { get; set; }
+
+    public string? Stars { get; set; }
+}
+
+public class MovieAndUser
+{
+    public int UserId { get; set; }
+    public int MovieId { get; set; }
 }

@@ -1,4 +1,4 @@
-using DisneyMoviesWatchlist.Models;
+using DisneyMoviesWatchlist.DatabaseContext;
 
 namespace DisneyMoviesWatchlist.Extensions;
 

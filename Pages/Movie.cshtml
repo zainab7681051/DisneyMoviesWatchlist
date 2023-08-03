@@ -25,6 +25,11 @@
                 <a href="https://www.imdb.com/@Model.movie.Link">
                     <h6>IMDB page</h6>
                 </a>
+                <br>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <button class="btn btn-primary mb-2">Add to List</button>
+                }
             </div>
         </div>
     }
