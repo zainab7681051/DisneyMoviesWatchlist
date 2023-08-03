@@ -30,7 +30,7 @@ public partial class DisneyMoviesDbContext : IdentityDbContext
         {
             entity.HasKey(e => e.MovieId);
 
-            entity.ToTable("empty");
+            entity.ToTable("disney_movies");
 
             entity.Property(e => e.Directors).HasColumnName("directors");
             entity.Property(e => e.Genre).HasColumnName("genre");
@@ -83,6 +83,6 @@ public class Movie
 
 public class MovieAndUser
 {
-    public int UserId { get; set; }
+    public string UserId { get; set; }
     public int MovieId { get; set; }
 }

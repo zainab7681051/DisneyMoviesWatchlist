@@ -22,6 +22,7 @@ public class IndexModel : PageModel
     }
 
     public List<MovieDto>? movies { get; set; }
+    public List<MovieAndUser> MoviesAndUsers { get; set; }
 
     [BindProperty(SupportsGet = true)]
     public string? query { get; set; }
@@ -33,11 +34,13 @@ public class IndexModel : PageModel
         {
             Movies = Movies.Where(s => s.Title!.Contains(query));
         }
-        movies = Movies.Select(e => e.MovieLessDetail()).ToList();
+        this.movies = Movies.Select(e => e.MovieLessDetail()).ToList();
+        this.MoviesAndUsers = context.MoviesAndUsers.ToList();
+
     }
-    public void OnPostAdd(int id)
+    public IActionResult OnPostAdd(int id)
     {
-        int user = int.Parse(userManager.GetUserId(User));
+        var user = userManager.GetUserId(User);
         var movie = context.DisneyMovies.Find(id);
         int movieId = movie.MovieId;
         context.MoviesAndUsers.Add(new MovieAndUser
@@ -45,5 +48,14 @@ public class IndexModel : PageModel
             UserId = user,
             MovieId = movieId
         });
+        context.SaveChanges();
+        return RedirectToPage();
+    }
+    public bool Bookmarked(int MovieId)
+    {
+        var userId = userManager.GetUserId(User);
+        var x = context.MoviesAndUsers.Find(new { userId, MovieId });
+        if (x is null) return false;
+        return true;
     }
 }

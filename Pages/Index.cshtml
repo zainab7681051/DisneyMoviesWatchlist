@@ -45,8 +45,18 @@
 
                             @if (SignInManager.IsSignedIn(User))
                             {
-                                <button type="submit" class="btn btn-primary mb-2" asp-page-handler="Add"
-                                    asp-route-id="@movie.MovieId">Add to List</button>
+                                <form method="post">
+                                    <button class="btn btn-primary mb-2" asp-page-handler="Add" asp-route-id="@movie.MovieId">
+                                        @if (Model.Bookmarked(movie.MovieId))
+                                        {
+                                            <span>Added</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Add to Watchlist</span>
+                                        }
+                                    </button>
+                                </form>
                             }
                         </div>
                     </div>
