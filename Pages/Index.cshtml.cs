@@ -51,6 +51,17 @@ public class IndexModel : PageModel
         context.SaveChanges();
         return RedirectToPage();
     }
+    
+    public IActionResult OnPostRemove(int id){
+        var userId=userManager.GetUserId(User);
+        var movie=context.DisneyMovies.Find(id);
+        int MovieId=movie.MovieId;
+        var x = context.MoviesAndUsers.Find(userId, MovieId);
+        context.MoviesAndUsers.Remove(x);
+        context.SaveChanges();
+        return RedirectToPage();
+    }
+
     public bool Bookmarked(int MovieId)
     {
         var userId = userManager.GetUserId(User);

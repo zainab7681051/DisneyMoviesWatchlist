@@ -46,16 +46,18 @@
                             @if (SignInManager.IsSignedIn(User))
                             {
                                 <form method="post">
-                                    <button class="btn btn-primary mb-2" asp-page-handler="Add" asp-route-id="@movie.MovieId">
-                                        @if (Model.Bookmarked(movie.MovieId))
+                                    @if (!Model.Bookmarked(movie.MovieId))
                                         {
-                                            <span>Added</span>
+                                            <button class="btn btn-primary mb-2" asp-page-handler="Add" asp-route-id="@movie.MovieId">
+                                                <span>Add to WatchList</span>
+                                            </button>
                                         }
                                         else
                                         {
-                                            <span>Add to Watchlist</span>
+                                            <button class="btn btn-primary mb-2" asp-page-handler="Remove" asp-route-id="@movie.MovieId">
+                                                <span>Remove from Watchlist</span>
+                                            </button>
                                         }
-                                    </button>
                                 </form>
                             }
                         </div>
