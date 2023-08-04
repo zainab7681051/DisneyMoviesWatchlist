@@ -1,34 +1,48 @@
 @page "{id:int}"
 @model MovieModel
 @{
-    ViewData["Title"] = @Model.movie?.Title ?? "404";
+    ViewData["Title"] = @Model.DisneyMovie?.Title ?? "404";
 }
 <div class="container mt-4">
 
-    @if (Model.movie != null)
+    @if (Model.DisneyMovie != null)
     {
         <div class="text-center">
-            <h1 class="display-4">@Model.movie.Title - @Model.movie.Year</h1>
+            <h1 class="display-4">@Model.DisneyMovie.Title - @Model.DisneyMovie.Year</h1>
         </div>
         <div class="row">
             <div class="col-md-4">
-                <img src="@Model.movie.Image" alt="@Model.movie.Title+ ' '+@Model.movie.Year" class="img-fluid rounded">
+                <img src="@Model.DisneyMovie.Image" alt="@Model.DisneyMovie.Title+ ' '+@Model.DisneyMovie.Year"
+                    class="img-fluid rounded">
             </div>
             <div class="col-md-8">
-                <h5>Rating: <span>@Model.movie.Rating / 10</span></h5>
-                <h5>Metascore: <span>@Model.movie.Metascore / 100</span></h5>
-                <h5>Runtime: <span>@Model.movie.Runtime</span></h5>
-                <h5>Genre: <span>@Model.movie.Genre</span></h5>
-                <h5>Summary: <span>@Model.movie.Summary</span></h5>
-                <h5>Director(s): <span>@Model.movie.Directors</span></h5>
-                <h5>Stars: <span>@Model.movie.Stars</span></h5>
-                <a href="https://www.imdb.com/@Model.movie.Link">
+                <h5>Rating: <span>@Model.DisneyMovie.Rating / 10</span></h5>
+                <h5>Metascore: <span>@Model.DisneyMovie.Metascore / 100</span></h5>
+                <h5>Runtime: <span>@Model.DisneyMovie.Runtime</span></h5>
+                <h5>Genre: <span>@Model.DisneyMovie.Genre</span></h5>
+                <h5>Summary: <span>@Model.DisneyMovie.Summary</span></h5>
+                <h5>Director(s): <span>@Model.DisneyMovie.Directors</span></h5>
+                <h5>Stars: <span>@Model.DisneyMovie.Stars</span></h5>
+                <a href="https://www.imdb.com/@Model.DisneyMovie.Link">
                     <h6>IMDB page</h6>
                 </a>
                 <br>
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <button class="btn btn-primary mb-2">Add to List</button>
+                    <form method="post">
+                        @if (!Model.Bookmarked(@Model.DisneyMovie.MovieId))
+                        {
+                            <button class="btn btn-primary mb-2" asp-page-handler="Add" asp-route-id="@Model.DisneyMovie.MovieId">
+                                <span>Add to WatchList</span>
+                            </button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-danger mb-2" asp-page-handler="Remove" asp-route-id="@Model.DisneyMovie.MovieId">
+                                <span>Remove from Watchlist</span>
+                            </button>
+                        }
+                    </form>
                 }
             </div>
         </div>

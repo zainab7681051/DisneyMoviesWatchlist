@@ -1,0 +1,57 @@
+@page
+@model WatchlistModel
+@{
+    ViewData["Title"] = "Watchlist page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Your WatchList</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        @if (Model.movies != null)
+        {
+            @if (!Model.movies.Any())
+            {
+                <div class="text-center">
+                    <h5>no movies in your WatchList rigth now.</h5>
+                </div>
+            }
+            else
+            {
+                @foreach (var movie in Model.movies)
+                {
+                    <div class="col-md-4">
+                        <div class="card mt-2">
+                            <a asp-page="./Movie" asp-route-id="@movie.MovieId">
+                                <img src="@movie.Image" class="card-img-top" alt="@movie.Title+' '+@movie.Year">
+                            </a>
+                            <div class="card-body">
+                                <a class="title-link" asp-page="./Movie" asp-route-id="@movie.MovieId">
+                                    <h5 class="card-title">@movie.Title - @movie.Year</h5>
+                                </a>
+                                <p class="card-text bold">@movie.Rating / 10</p>
+                            </div>
+
+                            <form method="post">
+
+                                <button class="btn btn-danger mb-2" asp-page-handler="Remove" asp-route-id="@movie.MovieId">
+                                    <span>Remove from Watchlist</span>
+                                </button>
+
+                            </form>
+
+                        </div>
+                    </div>
+                }
+            }
+        }
+        else
+        {
+            <div class="text-center">
+                <h5>no movies are available rigth now.</h5>
+            </div>
+        }
+    </div>
+</div>
