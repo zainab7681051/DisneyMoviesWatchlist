@@ -1,5 +1,14 @@
+:root {
+  --bg-color-p: #281b86;
+  --bg-color-p-dark: #0e0648;
+  --bg-color-s: #e89500;
+  --bg-color-s-dark: #d98c00;
+  --light-blue: #dbf2ff;
+}
+
 html {
   font-size: 14px;
+  background-color: var(--bg-color-p);
 }
 
 @media (min-width: 768px) {
@@ -8,13 +17,6 @@ html {
   }
 }
 
-.btn:focus,
-.btn:active:focus,
-.btn-link.nav-link:focus,
-.form-control:focus,
-.form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
 
 html {
   position: relative;
@@ -23,11 +25,6 @@ html {
 
 body {
   margin-bottom: 60px;
-}
-
-a.title-link {
-  color: #000;
-  text-decoration: none;
 }
 
 h5 span {

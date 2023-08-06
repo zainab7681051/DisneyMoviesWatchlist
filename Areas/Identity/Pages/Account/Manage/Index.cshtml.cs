@@ -26,6 +26,7 @@ namespace DisneyMoviesWatchlist.Areas.Identity.Pages.Account.Manage
         }
 
         public string Username { get; set; }
+        public string Email { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -35,16 +36,15 @@ namespace DisneyMoviesWatchlist.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [StringLength(100)]
+            [StringLength(50)]
             [Display(Name = "New User Name")]
             public string NewUserName { get; set; }
         }
 
         private async Task LoadAsync(IdentityUser user)
         {
-            var userName = await _userManager.GetUserNameAsync(user);
-
-            Username = userName;
+            Username = await _userManager.GetUserNameAsync(user);
+            Email=await _userManager.GetEmailAsync(user);
 
         }
 
