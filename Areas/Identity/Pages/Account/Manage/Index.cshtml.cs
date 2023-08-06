@@ -35,22 +35,17 @@ namespace DisneyMoviesWatchlist.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Phone]
-            [Display(Name = "Phone number")]
-            public string PhoneNumber { get; set; }
+            [StringLength(100)]
+            [Display(Name = "New User Name")]
+            public string NewUserName { get; set; }
         }
 
         private async Task LoadAsync(IdentityUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
             Username = userName;
 
-            Input = new InputModel
-            {
-                PhoneNumber = phoneNumber
-            };
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -79,13 +74,14 @@ namespace DisneyMoviesWatchlist.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            if (Input.PhoneNumber != phoneNumber)
+            
+            var userName = await _userManager.GetUserNameAsync(user);
+            if (Input.NewUserName != userName)
             {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-                if (!setPhoneResult.Succeeded)
+                var setUserNameResult = await _userManager.SetUserNameAsync(user, Input.NewUserName);
+                if (!setUserNameResult.Succeeded)
                 {
-                    StatusMessage = "Unexpected error when trying to set phone number.";
+                    StatusMessage = "Unexpected error when trying to set user name.";
                     return RedirectToPage();
                 }
             }
