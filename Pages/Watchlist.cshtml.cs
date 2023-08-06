@@ -24,7 +24,8 @@ public class WatchlistModel : PageModel
         this.userManager = userManager;
     }
 
-    public List<MovieDto>? movies { get; set; }
+    public List<MovieDto> movies { get; set; }
+    
     public void OnGet()
     {
         var userId=userManager.GetUserId(User);
@@ -37,6 +38,7 @@ public class WatchlistModel : PageModel
         }
         movies=list;
     }
+
     public IActionResult OnPostRemove(int id){
         var userId=userManager.GetUserId(User);
         var movie=context.DisneyMovies.Find(id);

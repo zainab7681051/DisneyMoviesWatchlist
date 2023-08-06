@@ -19,7 +19,7 @@ public class MovieModel : PageModel
         this.userManager = userManager;
     }
 
-    public Movie? DisneyMovie { get; set; }
+    public Movie DisneyMovie { get; set; }
     public void OnGet(int id)
     {
         DisneyMovie = context.DisneyMovies.Find(id);

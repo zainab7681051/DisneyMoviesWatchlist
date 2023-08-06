@@ -21,17 +21,17 @@ public class IndexModel : PageModel
         this.userManager = userManager;
     }
 
-    public List<MovieDto>? movies { get; set; }
+    public List<MovieDto> movies { get; set; }
 
     [BindProperty(SupportsGet = true)]
-    public string? query { get; set; }
+    public string query { get; set; }
     public void OnGet()
     {
         var Movies = from m in context.DisneyMovies
                      select m;
         if (!string.IsNullOrEmpty(query))
         {
-            Movies = Movies.Where(s => s.Title!.Contains(query));
+            Movies = Movies.Where(s => s.Title.Contains(query));
         }
         movies = Movies.Select(e => e.MovieLessDetail()).ToList();
     }
