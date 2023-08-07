@@ -77,8 +77,11 @@ namespace DisneyMoviesWatchlist.Areas.Identity.Pages.Account
                 }
                 else
                 {
+                    _logger.LogWarning(typeof(result));
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");                
                     return Page();
+
+                    
                 }
             }
             return Page();

@@ -27,12 +27,19 @@ body {
   margin-bottom: 60px;
 }
 
+
 h5 span {
   font-weight: 400;
 }
 
 a {
   text-decoration: none;
+  color: var(--bg-color-s);
+  transition: color .3s ease;
+}
+
+a:hover {
+  color: var(--light-blue);
 }
 
 
@@ -52,4 +59,46 @@ a {
 
 .title-link.card-title {
   color: var(--light-blue);
+}
+
+.nav-link {
+  color: var(--bg-color-p-dark);
+  transition: color .3s ease;
+}
+
+.nav-link:hover {
+  color: var(--light-blue);
+}
+
+.btn-primary {
+  background-color: var(--bg-color-s-dark);
+  border-color: var(--bg-color-s-dark);
+  transition: all .3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--bg-color-s);
+  border-color: var(--bg-color-s);
+}
+
+.form-control:focus {
+  border-color: var(--bg-color-s-dark);
+  box-shadow: 0 0 0 .25rem var(--bg-color-s);
+}
+
+label.form-label {
+  color: #000
+}
+
+div.checkbox.mb-3>label {
+  color: #fff
+}
+
+.text-danger {
+  color: #ee0a02 !important
+}
+
+.form-check-input:checked {
+  background-color: var(--bg-color-s);
+  border-color: var(--bg-color-s);
 }
