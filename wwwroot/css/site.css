@@ -30,3 +30,26 @@ body {
 h5 span {
   font-weight: 400;
 }
+
+a {
+  text-decoration: none;
+}
+
+
+.indexModel {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.indexModel .card {
+  background-color: var(--bg-color-p-dark);
+  display: flex;
+  align-items: center;
+}
+
+.title-link.card-title {
+  color: var(--light-blue);
+}

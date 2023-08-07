@@ -1,5 +1,14 @@
-﻿.navbar-brand {
-  color: #fff;
+﻿.nav-link-span {
+  color: var(--bg-color-p-dark);
+  transition: color .3s ease;
+}
+
+.nav-link-span:hover {
+  color: var(--light-blue);
+}
+
+.navbar-brand {
+  color: var(--bg-color-p-dark);
   white-space: normal;
   text-align: center;
   word-break: break-all;
@@ -7,7 +16,7 @@
 }
 
 .navbar-brand:hover {
-  color: var(--bg-color-p);
+  color: var(--light-blue);
 }
 
 .footer {
@@ -20,10 +29,10 @@
 }
 
 .bg-color-p {
-  background: var(--bg-color-p);
+  background-color: var(--bg-color-p);
   color: #fff;
 }
 
 .bg-color-s {
-  background: var(--bg-color-s);
+  background-color: var(--bg-color-s);
 }

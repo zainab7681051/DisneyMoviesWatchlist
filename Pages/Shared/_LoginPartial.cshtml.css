@@ -1,0 +1,8 @@
+.nav-link {
+    color: var(--bg-color-p-dark);
+    transition: color .3s ease;
+}
+
+.nav-link:hover {
+    color: var(--light-blue);
+}
