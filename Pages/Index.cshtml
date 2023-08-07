@@ -31,7 +31,7 @@
 
                 @foreach (var movie in Model.movies)
                 {
-                    <div class="indexModel col-md-4">
+                    <div class="MovieCard col-md-4">
                         <div class="card mt-2">
                             <a asp-page="./Movie" asp-route-id="@movie.MovieId">
                                 <img src="@movie.Image" class="card-img-top" alt="@movie.Title+' '+@movie.Year">

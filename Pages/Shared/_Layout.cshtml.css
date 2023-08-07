@@ -19,6 +19,22 @@
   color: var(--light-blue);
 }
 
+
+.navbar-toggler {
+    border-color: transparent;
+}
+
+.navbar-toggler:focus{
+  box-shadow: 0 0 0 0;
+}
+.navbar-toggler span {
+  width: 2.5rem;
+  height: 0.6rem;
+  display: flex;
+  border-bottom: 2px solid var(--bg-color-p-dark);
+}
+
+
 .footer {
   position: absolute;
   bottom: 0;

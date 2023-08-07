@@ -43,7 +43,7 @@ a:hover {
 }
 
 
-.indexModel {
+.MovieCard {
   display: flex;
   justify-content: center;
   align-items: stretch;
@@ -51,7 +51,7 @@ a:hover {
   margin-bottom: 1rem;
 }
 
-.indexModel .card {
+.MovieCard .card {
   background-color: var(--bg-color-p-dark);
   display: flex;
   align-items: center;
@@ -101,4 +101,19 @@ div.checkbox.mb-3>label {
 .form-check-input:checked {
   background-color: var(--bg-color-s);
   border-color: var(--bg-color-s);
+}
+
+.nav-pills .nav-link{
+  color:#fff;
+  transition: color .3s ease;
+}
+.nav-pills .nav-link:hover{
+  color:var(--bg-color-s);
+}
+.nav-pills .nav-link.active{
+  background-color: var(--bg-color-s);
+  color:#fff;
+}
+.form-control:disabled, .form-control[readonly]{
+  background-color: #c2c0c0;
 }
