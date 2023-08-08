@@ -1,5 +1,7 @@
-﻿.nav-link-span {
-  color: var(--bg-color-p-dark);
+﻿
+.nav-link-span {
+  color: #000;
+  font-weight: 600;
   transition: color .3s ease;
 }
 
@@ -8,7 +10,8 @@
 }
 
 .navbar-brand {
-  color: var(--bg-color-p-dark);
+  font-family: 'Satisfy', cursive;
+  color: #000;
   white-space: normal;
   text-align: center;
   word-break: break-all;

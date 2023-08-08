@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?&family=Satisfy&family=Quicksand&display=swap');
+
 :root {
   --bg-color-p: #281b86;
   --bg-color-p-dark: #0e0648;
@@ -24,12 +26,17 @@ html {
 }
 
 body {
+  font-family: 'Quicksand', sans-serif;
   margin-bottom: 60px;
 }
 
-
-h5 span {
-  font-weight: 400;
+.col-md-8 h5{
+ text-transform: uppercase; 
+ font-weight: bold;
+}
+.col-md-8 h5 span {
+  font-weight: 300;
+  text-transform: none;
 }
 
 a {
@@ -62,7 +69,8 @@ a:hover {
 }
 
 .nav-link {
-  color: var(--bg-color-p-dark);
+  color: #000;
+  font-weight: 600;
   transition: color .3s ease;
 }
 
@@ -116,4 +124,8 @@ div.checkbox.mb-3>label {
 }
 .form-control:disabled, .form-control[readonly]{
   background-color: #c2c0c0;
+}
+
+.display-4{
+  text-transform: capitalize;
 }
