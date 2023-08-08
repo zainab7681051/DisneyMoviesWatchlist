@@ -32,7 +32,6 @@ public class IndexModel : PageModel
                      select m;
         if (!string.IsNullOrEmpty(query))
         {
-            filter="";
             Movies = Movies.Where(s => s.Title.Contains(query));
         }
         
