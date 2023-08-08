@@ -25,14 +25,17 @@ public class IndexModel : PageModel
 
     [BindProperty(SupportsGet = true)]
     public string query { get; set; }
+
     public void OnGet()
     {
         var Movies = from m in context.DisneyMovies
                      select m;
         if (!string.IsNullOrEmpty(query))
         {
+            filter="";
             Movies = Movies.Where(s => s.Title.Contains(query));
         }
+        
         movies = Movies.Select(e => e.MovieLessDetail()).ToList();
     }
     public IActionResult OnPostAdd(int id)
