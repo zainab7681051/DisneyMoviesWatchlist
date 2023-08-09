@@ -1,1 +1,2 @@
 # DisneyMoviesWatchlist
+DisneyMoviesWatchlist is a server-side web application in C# - ASP.NET Core, Entity Framework and RazorPages. Users can create an account and make a watchist of their favourite Disney animation movies. 
