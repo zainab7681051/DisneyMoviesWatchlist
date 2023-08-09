@@ -30,6 +30,9 @@ public class IndexModel : PageModel
     {
         var Movies = from m in context.DisneyMovies
                      select m;
+         
+        Movies=Movies.OrderByDescending(s => s.MovieId);
+
         if (!string.IsNullOrEmpty(query))
         {
             Movies = Movies.Where(s => s.Title.Contains(query));
