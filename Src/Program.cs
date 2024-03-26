@@ -1,6 +1,5 @@
 using DisneyMoviesWatchlist.DatabaseContext;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<DisneyMoviesDbContext>();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+builder.Services.AddDefaultIdentity<IdentityUser>(
+    options => options.SignIn.RequireConfirmedAccount = false)
 .AddEntityFrameworkStores<DisneyMoviesDbContext>();
 
 builder.Services.AddRazorPages();
