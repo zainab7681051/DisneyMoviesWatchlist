@@ -1,4 +1,4 @@
-using DisneyMoviesWatchlist.DatabaseContext;
+using DisneyMoviesWatchlist.Src.DatabaseContext;
 using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace DisneyMoviesWatchlist.Areas.Identity.Pages.Account
+namespace DisneyMoviesWatchlist.Src.Areas.Identity.Pages.Account
 {
     public class LogoutModel : PageModel
     {

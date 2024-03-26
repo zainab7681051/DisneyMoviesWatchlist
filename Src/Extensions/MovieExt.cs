@@ -1,6 +1,6 @@
-using DisneyMoviesWatchlist.DatabaseContext;
+using DisneyMoviesWatchlist.Src.DatabaseContext;
 
-namespace DisneyMoviesWatchlist.Extensions;
+namespace DisneyMoviesWatchlist.Src.Extensions;
 
 public class MovieDto
 {

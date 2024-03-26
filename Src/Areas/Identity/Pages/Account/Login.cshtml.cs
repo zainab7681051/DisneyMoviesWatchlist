@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace DisneyMoviesWatchlist.Areas.Identity.Pages.Account
+namespace DisneyMoviesWatchlist.Src.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace DisneyMoviesWatchlist.Areas.Identity.Pages.Account
 
         public LoginModel(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
         {
-            _userManager=userManager;
+            _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
         }
@@ -66,12 +66,12 @@ namespace DisneyMoviesWatchlist.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var user= await _userManager.FindByEmailAsync(Input.Email);
-                if(user is null)
+                var user = await _userManager.FindByEmailAsync(Input.Email);
+                if (user is null)
                 {
-                    ModelState.AddModelError(string.Empty, "Account does not exist.");                
+                    ModelState.AddModelError(string.Empty, "Account does not exist.");
                     return Page();
-                } 
+                }
                 var result = await _signInManager.PasswordSignInAsync(user.UserName, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
@@ -85,7 +85,7 @@ namespace DisneyMoviesWatchlist.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Incorrect Email or Password.");                
+                    ModelState.AddModelError(string.Empty, "Incorrect Email or Password.");
                     return Page();
                 }
             }

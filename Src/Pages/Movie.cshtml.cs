@@ -1,8 +1,8 @@
-using DisneyMoviesWatchlist.DatabaseContext;
+using DisneyMoviesWatchlist.Src.DatabaseContext;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-namespace DisneyMoviesWatchlist.Pages;
+namespace DisneyMoviesWatchlist.Src.Pages;
 
 public class MovieModel : PageModel
 {
@@ -37,11 +37,12 @@ public class MovieModel : PageModel
         context.SaveChanges();
         return RedirectToPage();
     }
-    
-    public IActionResult OnPostRemove(int id){
-        var userId=userManager.GetUserId(User);
-        var movie=context.DisneyMovies.Find(id);
-        int MovieId=movie.MovieId;
+
+    public IActionResult OnPostRemove(int id)
+    {
+        var userId = userManager.GetUserId(User);
+        var movie = context.DisneyMovies.Find(id);
+        int MovieId = movie.MovieId;
         var x = context.MoviesAndUsers.Find(userId, MovieId);
         context.MoviesAndUsers.Remove(x);
         context.SaveChanges();

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace DisneyMoviesWatchlist.Pages;
+namespace DisneyMoviesWatchlist.Src.Pages;
 
 public class AboutModel : PageModel
 {

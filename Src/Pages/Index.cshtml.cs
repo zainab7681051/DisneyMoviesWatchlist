@@ -1,10 +1,10 @@
-﻿using DisneyMoviesWatchlist.DatabaseContext;
+﻿using DisneyMoviesWatchlist.Src.DatabaseContext;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using DisneyMoviesWatchlist.Extensions;
+using DisneyMoviesWatchlist.Src.Extensions;
 
-namespace DisneyMoviesWatchlist.Pages;
+namespace DisneyMoviesWatchlist.Src.Pages;
 
 public class IndexModel : PageModel
 {
@@ -30,14 +30,14 @@ public class IndexModel : PageModel
     {
         var Movies = from m in context.DisneyMovies
                      select m;
-         
-        Movies=Movies.OrderByDescending(s => s.MovieId);
+
+        Movies = Movies.OrderByDescending(s => s.MovieId);
 
         if (!string.IsNullOrEmpty(query))
         {
             Movies = Movies.Where(s => s.Title.Contains(query));
         }
-        
+
         movies = Movies.Select(e => e.MovieLessDetail()).ToList();
     }
     public IActionResult OnPostAdd(int id)
@@ -53,11 +53,12 @@ public class IndexModel : PageModel
         context.SaveChanges();
         return RedirectToPage();
     }
-    
-    public IActionResult OnPostRemove(int id){
-        var userId=userManager.GetUserId(User);
-        var movie=context.DisneyMovies.Find(id);
-        int MovieId=movie.MovieId;
+
+    public IActionResult OnPostRemove(int id)
+    {
+        var userId = userManager.GetUserId(User);
+        var movie = context.DisneyMovies.Find(id);
+        int MovieId = movie.MovieId;
         var x = context.MoviesAndUsers.Find(userId, MovieId);
         context.MoviesAndUsers.Remove(x);
         context.SaveChanges();

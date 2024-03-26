@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 
-namespace DisneyMoviesWatchlist.DatabaseContext;
+namespace DisneyMoviesWatchlist.Src.DatabaseContext;
 public partial class DisneyMoviesDbContext : IdentityDbContext
 {
     public DisneyMoviesDbContext()

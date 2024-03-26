@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace DisneyMoviesWatchlist.Areas.Identity.Pages.Account.Manage
+namespace DisneyMoviesWatchlist.Src.Areas.Identity.Pages.Account.Manage
 {
     public class IndexModel : PageModel
     {
@@ -44,7 +44,7 @@ namespace DisneyMoviesWatchlist.Areas.Identity.Pages.Account.Manage
         private async Task LoadAsync(IdentityUser user)
         {
             Username = await _userManager.GetUserNameAsync(user);
-            Email=await _userManager.GetEmailAsync(user);
+            Email = await _userManager.GetEmailAsync(user);
 
         }
 
@@ -74,7 +74,7 @@ namespace DisneyMoviesWatchlist.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            
+
             var userName = await _userManager.GetUserNameAsync(user);
             if (Input.NewUserName != userName)
             {

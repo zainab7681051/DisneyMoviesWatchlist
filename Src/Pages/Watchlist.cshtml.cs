@@ -2,10 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using DisneyMoviesWatchlist.DatabaseContext;
-using DisneyMoviesWatchlist.Extensions;
+using DisneyMoviesWatchlist.Src.DatabaseContext;
+using DisneyMoviesWatchlist.Src.Extensions;
 
-namespace DisneyMoviesWatchlist.Pages;
+namespace DisneyMoviesWatchlist.Src.Pages;
 
 [Authorize]
 public class WatchlistModel : PageModel
@@ -25,24 +25,25 @@ public class WatchlistModel : PageModel
     }
 
     public List<MovieDto> movies { get; set; }
-    
+
     public void OnGet()
     {
-        var userId=userManager.GetUserId(User);
-        var watchList=context.MoviesAndUsers.Where(m=>m.UserId==userId).ToList();
-        List<MovieDto> list=new();
+        var userId = userManager.GetUserId(User);
+        var watchList = context.MoviesAndUsers.Where(m => m.UserId == userId).ToList();
+        List<MovieDto> list = new();
         foreach (var m in watchList)
         {
-            var x=context.DisneyMovies.Find(m.MovieId).MovieLessDetail();
-            list.Add(x);   
+            var x = context.DisneyMovies.Find(m.MovieId).MovieLessDetail();
+            list.Add(x);
         }
-        movies=list;
+        movies = list;
     }
 
-    public IActionResult OnPostRemove(int id){
-        var userId=userManager.GetUserId(User);
-        var movie=context.DisneyMovies.Find(id);
-        int MovieId=movie.MovieId;
+    public IActionResult OnPostRemove(int id)
+    {
+        var userId = userManager.GetUserId(User);
+        var movie = context.DisneyMovies.Find(id);
+        int MovieId = movie.MovieId;
         var x = context.MoviesAndUsers.Find(userId, MovieId);
         context.MoviesAndUsers.Remove(x);
         context.SaveChanges();
