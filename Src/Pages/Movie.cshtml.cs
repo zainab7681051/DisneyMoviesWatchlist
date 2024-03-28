@@ -2,6 +2,8 @@ using DisneyMoviesWatchlist.Src.DatabaseContext;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using DisneyMoviesWatchlist.Src.Models;
+
 namespace DisneyMoviesWatchlist.Src.Pages;
 
 public class MovieModel : PageModel

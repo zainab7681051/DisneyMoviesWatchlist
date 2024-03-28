@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using DisneyMoviesWatchlist.Src.Models;
 
 namespace DisneyMoviesWatchlist.Src.DatabaseContext;
 public partial class DisneyMoviesDbContext : IdentityDbContext
@@ -53,35 +54,4 @@ public partial class DisneyMoviesDbContext : IdentityDbContext
 
 
 }
-public class Movie
-{
-    public int MovieId { get; set; }
 
-    public string Title { get; set; }
-
-    public string Year { get; set; }
-
-    public string Link { get; set; }
-
-    public string Image { get; set; }
-
-    public string Runtime { get; set; }
-
-    public string Genre { get; set; }
-
-    public string Summary { get; set; }
-
-    public string Rating { get; set; }
-
-    public string Metascore { get; set; }
-
-    public string Directors { get; set; }
-
-    public string Stars { get; set; }
-}
-
-public class MovieAndUser
-{
-    public string UserId { get; set; }
-    public int MovieId { get; set; }
-}

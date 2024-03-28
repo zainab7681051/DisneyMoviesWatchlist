@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using DisneyMoviesWatchlist.Src.Extensions;
+using DisneyMoviesWatchlist.Src.Models;
 
 namespace DisneyMoviesWatchlist.Src.Pages;
 

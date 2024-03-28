@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using DisneyMoviesWatchlist.Src.DatabaseContext;
 using DisneyMoviesWatchlist.Src.Extensions;
+using DisneyMoviesWatchlist.Src.Models;
 
 namespace DisneyMoviesWatchlist.Src.Pages;
 
