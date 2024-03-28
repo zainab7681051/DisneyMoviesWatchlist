@@ -1,5 +1,6 @@
-using DisneyMoviesWatchlist.Src.DatabaseContext;
 using Microsoft.AspNetCore.Identity;
+using DisneyMoviesWatchlist.Src.DatabaseContext;
+using DisneyMoviesWatchlist.Src.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +11,7 @@ builder.Services.AddDbContext<DisneyMoviesDbContext>();
 builder.Services.AddDefaultIdentity<IdentityUser>(
     options => options.SignIn.RequireConfirmedAccount = false)
 .AddEntityFrameworkStores<DisneyMoviesDbContext>();
-
+builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 builder.Services.AddRazorPages();
 
 builder.Services.Configure<IdentityOptions>(options =>

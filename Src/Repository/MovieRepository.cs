@@ -14,9 +14,19 @@ public class MovieRepository : IMovieRepository
         this.logger = logger;
         this.context = context;
     }
-    public List<MovieDto> GetAll()
+    public List<MovieDto> GetAll(string query = null)
     {
-        throw new NotImplementedException();
+        var Movies = from m in context.DisneyMovies
+                     select m;
+
+        Movies = Movies.OrderByDescending(s => s.MovieId);
+
+        var MovieList = Movies.Select(e => e.MovieLessDetail());
+        if (!string.IsNullOrEmpty(query))
+        {
+            MovieList = MovieList.Where(s => s.Title.Equals(query, StringComparison.OrdinalIgnoreCase));
+        }
+        return MovieList.ToList();
     }
 
     public Movie GetOne(int id)

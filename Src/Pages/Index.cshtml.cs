@@ -1,24 +1,24 @@
-﻿using DisneyMoviesWatchlist.Src.DatabaseContext;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using DisneyMoviesWatchlist.Src.Extensions;
 using DisneyMoviesWatchlist.Src.Models;
+using DisneyMoviesWatchlist.Src.Repository;
 
 namespace DisneyMoviesWatchlist.Src.Pages;
 
 public class IndexModel : PageModel
 {
     private readonly ILogger<IndexModel> logger;
-    private readonly DisneyMoviesDbContext context;
+    private readonly IMovieRepository movieRepo;
     private readonly UserManager<IdentityUser> userManager;
     public IndexModel(
         ILogger<IndexModel> logger,
-        DisneyMoviesDbContext context,
+        IMovieRepository movieRepo,
         UserManager<IdentityUser> userManager)
     {
         this.logger = logger;
-        this.context = context;
+        this.movieRepo = movieRepo;
         this.userManager = userManager;
     }
 
@@ -29,15 +29,6 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
-        var Movies = from m in context.DisneyMovies
-                     select m;
-
-        Movies = Movies.OrderByDescending(s => s.MovieId);
-
-        if (!string.IsNullOrEmpty(query))
-        {
-            Movies = Movies.Where(s => s.Title.Contains(query));
-        }
 
         movies = Movies.Select(e => e.MovieLessDetail()).ToList();
     }
