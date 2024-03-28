@@ -2,66 +2,49 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using DisneyMoviesWatchlist.Src.Extensions;
-using DisneyMoviesWatchlist.Src.Models;
 using DisneyMoviesWatchlist.Src.Repository;
 
 namespace DisneyMoviesWatchlist.Src.Pages;
 
 public class IndexModel : PageModel
 {
-    private readonly ILogger<IndexModel> logger;
     private readonly IMovieRepository movieRepo;
     private readonly UserManager<IdentityUser> userManager;
-    public IndexModel(
-        ILogger<IndexModel> logger,
-        IMovieRepository movieRepo,
-        UserManager<IdentityUser> userManager)
-    {
-        this.logger = logger;
-        this.movieRepo = movieRepo;
-        this.userManager = userManager;
-    }
 
-    public List<MovieDto> movies { get; set; }
+    public List<MovieDto> Movies { get; set; }
 
     [BindProperty(SupportsGet = true)]
     public string query { get; set; }
 
+    public IndexModel(
+        IMovieRepository movieRepo,
+        UserManager<IdentityUser> userManager)
+    {
+        this.movieRepo = movieRepo;
+        this.userManager = userManager;
+    }
+
     public void OnGet()
     {
-
-        movies = movieRepo.GetAll(query);
+        Movies = movieRepo.GetAll(query);
     }
-    public IActionResult OnPostAdd(int id)
+    public IActionResult OnPostAdd(int MovieId)
     {
-        var user = userManager.GetUserId(User);
-        var movie = context.DisneyMovies.Find(id);
-        int movieId = movie.MovieId;
-        context.MoviesAndUsers.Add(new MovieAndUser
-        {
-            UserId = user,
-            MovieId = movieId
-        });
-        context.SaveChanges();
+        var userId = userManager.GetUserId(User);
+        movieRepo.AddToWatchList(userId, MovieId);
         return RedirectToPage();
     }
 
-    public IActionResult OnPostRemove(int id)
+    public IActionResult OnPostRemove(int MovieId)
     {
         var userId = userManager.GetUserId(User);
-        var movie = context.DisneyMovies.Find(id);
-        int MovieId = movie.MovieId;
-        var x = context.MoviesAndUsers.Find(userId, MovieId);
-        context.MoviesAndUsers.Remove(x);
-        context.SaveChanges();
+        movieRepo.RemoveFromWatchList(userId, MovieId);
         return RedirectToPage();
     }
 
     public bool Bookmarked(int MovieId)
     {
         var userId = userManager.GetUserId(User);
-        var x = context.MoviesAndUsers.Find(userId, MovieId);
-        if (x is null) return false;
-        return true;
+        return movieRepo.IsInWatchList(userId, MovieId);
     }
 }

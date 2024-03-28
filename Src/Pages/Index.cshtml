@@ -19,9 +19,9 @@
                 </div>
             </div>
         </form>
-        @if (Model.movies != null)
+        @if (Model.Movies != null)
         {
-            @if (!Model.movies.Any() && !string.IsNullOrEmpty(Model.query))
+            @if (!Model.Movies.Any() && !string.IsNullOrEmpty(Model.query))
             {
                 <div class="text-center">
                     <h5>no search results for "@Model.query".</h5>
@@ -30,7 +30,7 @@
             else
             {
 
-                @foreach (var movie in Model.movies)
+                @foreach (var movie in Model.Movies)
                 {
                     <div class="MovieCard col-md-4">
                         <div class="card mt-2">
@@ -69,7 +69,7 @@
         else
         {
             <div class="text-center">
-                <h5>no movies are available right now.</h5>
+                <h5>no Movies are available right now.</h5>
             </div>
         }
     </div>

@@ -1,4 +1,3 @@
-using DisneyMoviesWatchlist.Src.DatabaseContext;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,54 +8,39 @@ namespace DisneyMoviesWatchlist.Src.Pages;
 
 public class MovieModel : PageModel
 {
-    private readonly ILogger<MovieModel> logger;
     private readonly IMovieRepository movieRepo;
     private readonly UserManager<IdentityUser> userManager;
+    public Movie DisneyMovie { get; set; }
+
     public MovieModel(
-        ILogger<MovieModel> logger,
         IMovieRepository movieRepo,
         UserManager<IdentityUser> userManager)
     {
-        this.logger = logger;
         this.movieRepo = movieRepo;
         this.userManager = userManager;
     }
 
-    public Movie DisneyMovie { get; set; }
-    public void OnGet(int id)
+    public void OnGet(int MovieId)
     {
-        DisneyMovie = movieRepo.GetOne(id);
+        DisneyMovie = movieRepo.GetOne(MovieId);
     }
-    public IActionResult OnPostAdd(int id)
+    public IActionResult OnPostAdd(int MovieId)
     {
-        var user = userManager.GetUserId(User);
-        var movie = context.DisneyMovies.Find(id);
-        int movieId = movie.MovieId;
-        context.MoviesAndUsers.Add(new MovieAndUser
-        {
-            UserId = user,
-            MovieId = movieId
-        });
-        context.SaveChanges();
+        var userId = userManager.GetUserId(User);
+        movieRepo.AddToWatchList(userId, MovieId);
         return RedirectToPage();
     }
 
-    public IActionResult OnPostRemove(int id)
+    public IActionResult OnPostRemove(int MovieId)
     {
         var userId = userManager.GetUserId(User);
-        var movie = context.DisneyMovies.Find(id);
-        int MovieId = movie.MovieId;
-        var x = context.MoviesAndUsers.Find(userId, MovieId);
-        context.MoviesAndUsers.Remove(x);
-        context.SaveChanges();
+        movieRepo.RemoveFromWatchList(userId, MovieId);
         return RedirectToPage();
     }
 
     public bool Bookmarked(int MovieId)
     {
         var userId = userManager.GetUserId(User);
-        var x = context.MoviesAndUsers.Find(userId, MovieId);
-        if (x is null) return false;
-        return true;
+        return movieRepo.IsInWatchList(userId, MovieId);
     }
 }

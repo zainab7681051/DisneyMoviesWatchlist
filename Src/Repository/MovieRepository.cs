@@ -31,9 +31,9 @@ public class MovieRepository : IMovieRepository
         return MovieList.ToList();
     }
 
-    public Movie GetOne(int id)
+    public Movie GetOne(int MovieId)
     {
-        return context.DisneyMovies.Find(id);
+        return context.DisneyMovies.Find(MovieId);
     }
 
     public List<MovieDto> GetWatchList(string UserId)
@@ -48,9 +48,9 @@ public class MovieRepository : IMovieRepository
         return list;
     }
 
-    public void AddToWatchList(string UserId, int id)
+    public void AddToWatchList(string UserId, int MovieId)
     {
-        var movie = context.DisneyMovies.Find(id);
+        var movie = context.DisneyMovies.Find(MovieId);
         context.MoviesAndUsers.Add(new MovieAndUser
         {
             UserId = UserId,
@@ -59,16 +59,16 @@ public class MovieRepository : IMovieRepository
         context.SaveChanges();
     }
 
-    public bool IsInWatchList(string UserId, int id)
+    public bool IsInWatchList(string UserId, int MovieId)
     {
-        var x = context.MoviesAndUsers.Find(UserId, id);
+        var x = context.MoviesAndUsers.Find(UserId, MovieId);
         if (x is null) return false;
         return true;
     }
 
-    public void RemoveFromWatchList(string UserId, int id)
+    public void RemoveFromWatchList(string UserId, int MovieId)
     {
-        var movie = context.DisneyMovies.Find(id);
+        var movie = context.DisneyMovies.Find(MovieId);
         var x = context.MoviesAndUsers.Find(UserId, movie.MovieId);
         context.MoviesAndUsers.Remove(x);
         context.SaveChanges();

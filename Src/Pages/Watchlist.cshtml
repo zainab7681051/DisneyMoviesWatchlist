@@ -10,17 +10,17 @@
 
 <div class="container">
     <div class="row">
-        @if (Model.movies != null)
+        @if (Model.Movies != null)
         {
-            @if (!Model.movies.Any())
+            @if (!Model.Movies.Any())
             {
                 <div class="text-center">
-                    <h5>no movies in your WatchList rigth now.</h5>
+                    <h5>no Movies in your WatchList rigth now.</h5>
                 </div>
             }
             else
             {
-                @foreach (var movie in Model.movies)
+                @foreach (var movie in Model.Movies)
                 {
                     <div class="MovieCard col-md-4">
                         <div class="card mt-2">
@@ -50,7 +50,7 @@
         else
         {
             <div class="text-center">
-                <h5>no movies are available rigth now.</h5>
+                <h5>no Movies are available rigth now.</h5>
             </div>
         }
     </div>
