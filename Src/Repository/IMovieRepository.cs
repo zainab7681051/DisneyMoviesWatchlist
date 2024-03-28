@@ -4,6 +4,11 @@ using DisneyMoviesWatchlist.Src.Models;
 namespace DisneyMoviesWatchlist.Src.Repository;
 public interface IMovieRepository
 {
-    public List<MovieDto> GetAll(string query = null);
-    public Movie GetOne(int id);
+    List<MovieDto> GetAll(string query);
+    Movie GetOne(int id);
+    List<MovieDto> GetWatchList(string UserId);
+    void AddToWatchList(string UserId, int id);
+    void RemoveFromWatchList(string UserId, int id);
+    bool IsInWatchList(string UserId, int id);
+
 }

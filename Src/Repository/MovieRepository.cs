@@ -14,7 +14,9 @@ public class MovieRepository : IMovieRepository
         this.logger = logger;
         this.context = context;
     }
-    public List<MovieDto> GetAll(string query = null)
+
+
+    public List<MovieDto> GetAll(string query)
     {
         var Movies = from m in context.DisneyMovies
                      select m;
@@ -31,6 +33,45 @@ public class MovieRepository : IMovieRepository
 
     public Movie GetOne(int id)
     {
-        throw new NotImplementedException();
+        return context.DisneyMovies.Find(id);
     }
+
+    public List<MovieDto> GetWatchList(string UserId)
+    {
+        var watchList = context.MoviesAndUsers.Where(m => m.UserId == UserId).ToList();
+        List<MovieDto> list = new();
+        foreach (var m in watchList)
+        {
+            var x = context.DisneyMovies.Find(m.MovieId).MovieLessDetail();
+            list.Add(x);
+        }
+        return list;
+    }
+
+    public void AddToWatchList(string UserId, int id)
+    {
+        var movie = context.DisneyMovies.Find(id);
+        context.MoviesAndUsers.Add(new MovieAndUser
+        {
+            UserId = UserId,
+            MovieId = movie.MovieId
+        });
+        context.SaveChanges();
+    }
+
+    public bool IsInWatchList(string UserId, int id)
+    {
+        var x = context.MoviesAndUsers.Find(UserId, id);
+        if (x is null) return false;
+        return true;
+    }
+
+    public void RemoveFromWatchList(string UserId, int id)
+    {
+        var movie = context.DisneyMovies.Find(id);
+        var x = context.MoviesAndUsers.Find(UserId, movie.MovieId);
+        context.MoviesAndUsers.Remove(x);
+        context.SaveChanges();
+    }
+
 }

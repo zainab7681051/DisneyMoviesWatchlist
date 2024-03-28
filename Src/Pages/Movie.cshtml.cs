@@ -3,28 +3,29 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using DisneyMoviesWatchlist.Src.Models;
+using DisneyMoviesWatchlist.Src.Repository;
 
 namespace DisneyMoviesWatchlist.Src.Pages;
 
 public class MovieModel : PageModel
 {
     private readonly ILogger<MovieModel> logger;
-    private readonly DisneyMoviesDbContext context;
+    private readonly IMovieRepository movieRepo;
     private readonly UserManager<IdentityUser> userManager;
     public MovieModel(
         ILogger<MovieModel> logger,
-        DisneyMoviesDbContext context,
+        IMovieRepository movieRepo,
         UserManager<IdentityUser> userManager)
     {
         this.logger = logger;
-        this.context = context;
+        this.movieRepo = movieRepo;
         this.userManager = userManager;
     }
 
     public Movie DisneyMovie { get; set; }
     public void OnGet(int id)
     {
-        DisneyMovie = context.DisneyMovies.Find(id);
+        DisneyMovie = movieRepo.GetOne(id);
     }
     public IActionResult OnPostAdd(int id)
     {

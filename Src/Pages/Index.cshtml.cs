@@ -30,7 +30,7 @@ public class IndexModel : PageModel
     public void OnGet()
     {
 
-        movies = Movies.Select(e => e.MovieLessDetail()).ToList();
+        movies = movieRepo.GetAll(query);
     }
     public IActionResult OnPostAdd(int id)
     {
