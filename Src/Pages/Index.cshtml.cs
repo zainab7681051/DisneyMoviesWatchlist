@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using DisneyMoviesWatchlist.Src.Extensions;
+using DisneyMoviesWatchlist.Src.Models;
 using DisneyMoviesWatchlist.Src.Repository;
 
 namespace DisneyMoviesWatchlist.Src.Pages;
@@ -11,10 +11,10 @@ public class IndexModel : PageModel
     private readonly IMovieRepository movieRepo;
     private readonly UserManager<IdentityUser> userManager;
 
-    public List<MovieDto> Movies { get; set; }
+    public List<MovieDto>? Movies { get; set; }
 
     [BindProperty(SupportsGet = true)]
-    public string query { get; set; }
+    public string? query { get; set; }
 
     public IndexModel(
         IMovieRepository movieRepo,

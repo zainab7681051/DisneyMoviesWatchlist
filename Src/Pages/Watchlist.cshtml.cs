@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using DisneyMoviesWatchlist.Src.Extensions;
+using DisneyMoviesWatchlist.Src.Models;
 using DisneyMoviesWatchlist.Src.Repository;
 
 namespace DisneyMoviesWatchlist.Src.Pages;
@@ -12,7 +12,7 @@ public class WatchlistModel : PageModel
 {
     private readonly IMovieRepository movieRepo;
     private readonly UserManager<IdentityUser> userManager;
-    public List<MovieDto> Movies { get; set; }
+    public List<MovieDto>? Movies { get; set; }
 
     public WatchlistModel(
         IMovieRepository movieRepo,

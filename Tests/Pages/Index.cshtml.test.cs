@@ -8,11 +8,11 @@ using DisneyMoviesWatchlist.Src.Repository;
 
 namespace DisneyMoviesWatchlist.Tests.Pages;
 
-public class MovieModelTest
+public class IndexModelTest
 {
     private readonly Mock<UserManager<IdentityUser>> userManagerMock;
     private readonly Mock<IMovieRepository> movieRepoMock;
-    public MovieModelTest()
+    public IndexModelTest()
     {
         // Initialize mocks
         movieRepoMock = new();
@@ -29,18 +29,16 @@ public class MovieModelTest
     }
 
     [Fact]
-    public void OnGet_Should_Set_DisneyMovie()
+    public void OnGet_Should_Set_Movies()
     {
         // Arrange
-        Movie fakeMovie = new() { MovieId = 1 };
-        movieRepoMock.Setup(r => r.GetOne(1)).Returns(fakeMovie);
-        var movieModel = new MovieModel(
+        movieRepoMock.Setup(r => r.GetAll(It.IsAny<string>())).Returns(new List<MovieDto>());
+        var indexmodel = new IndexModel(
             movieRepoMock.Object,
             userManagerMock.Object);
         // Act
-        movieModel.OnGet(1);
+        indexmodel.OnGet();
         // Assert
-        Assert.NotNull(movieModel.DisneyMovie);
-        Assert.Equal(fakeMovie.MovieId, movieModel.DisneyMovie.MovieId);
+        Assert.NotNull(indexmodel.Movies);
     }
 }

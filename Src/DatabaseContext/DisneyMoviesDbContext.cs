@@ -51,7 +51,5 @@ public partial class DisneyMoviesDbContext : IdentityDbContext
         });
 
     }
-
-
 }
 
