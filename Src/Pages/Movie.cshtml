@@ -32,13 +32,15 @@
                     <form method="post">
                         @if (!Model.Bookmarked(@Model.DisneyMovie.MovieId))
                         {
-                            <button class="btn btn-primary mb-2" asp-page-handler="Add" asp-route-id="@Model.DisneyMovie.MovieId">
+                            <button class="btn btn-primary mb-2" asp-page-handler="Add"
+                                asp-route-MovieId="@Model.DisneyMovie.MovieId">
                                 <span>Add to WatchList</span>
                             </button>
                         }
                         else
                         {
-                            <button class="btn btn-danger mb-2" asp-page-handler="Remove" asp-route-id="@Model.DisneyMovie.MovieId">
+                            <button class="btn btn-danger mb-2" asp-page-handler="Remove"
+                                asp-route-MovieId="@Model.DisneyMovie.MovieId">
                                 <span>Remove from Watchlist</span>
                             </button>
                         }

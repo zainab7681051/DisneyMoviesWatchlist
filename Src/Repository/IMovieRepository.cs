@@ -1,4 +1,3 @@
-using DisneyMoviesWatchlist.Src.Extensions;
 using DisneyMoviesWatchlist.Src.Models;
 
 namespace DisneyMoviesWatchlist.Src.Repository;

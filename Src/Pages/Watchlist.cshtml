@@ -22,13 +22,13 @@
             {
                 @foreach (var movie in Model.Movies)
                 {
-                    <div class="MovieCard col-md-4">
+                    <div id="movie-@movie.MovieId" class="MovieCard col-md-4">
                         <div class="card mt-2">
-                            <a asp-page="./Movie" asp-route-id="@movie.MovieId">
+                            <a asp-page="./Movie" asp-route-MovieId="@movie.MovieId">
                                 <img src="@movie.Image" class="card-img-top" alt="@movie.Title+' '+@movie.Year">
                             </a>
                             <div class="card-body">
-                                <a asp-page="./Movie" asp-route-id="@movie.MovieId">
+                                <a asp-page="./Movie" asp-route-MovieId="@movie.MovieId">
                                     <h5 class="title-link card-title">@movie.Title - @movie.Year</h5>
                                 </a>
                                 <p class="card-text bold">@movie.Rating / 10</p>
@@ -36,7 +36,7 @@
 
                             <form method="post">
 
-                                <button class="btn btn-danger mb-2" asp-page-handler="Remove" asp-route-id="@movie.MovieId">
+                                <button class="btn btn-danger mb-2" asp-page-handler="Remove" asp-route-MovieId="@movie.MovieId">
                                     <span>Remove from Watchlist</span>
                                 </button>
 

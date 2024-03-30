@@ -50,7 +50,6 @@ public class MovieRepository : IMovieRepository
 
     public void AddToWatchList(string UserId, int MovieId)
     {
-        // NullReferenceException: Object reference not set to an instance of an object.
         var movie = context.DisneyMovies.Find(MovieId);
         var movieId = movie.MovieId;
         context.MoviesAndUsers.Add(new MovieAndUser

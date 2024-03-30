@@ -15,6 +15,7 @@ public class IndexModel : PageModel
 
     [BindProperty(SupportsGet = true)]
     public string? query { get; set; }
+    public int? PageViewHash { get; set; }=null;
 
     public IndexModel(
         IMovieRepository movieRepo,
@@ -32,6 +33,7 @@ public class IndexModel : PageModel
     {
         var userId = userManager.GetUserId(User);
         movieRepo.AddToWatchList(userId, MovieId);
+        PageViewHash = MovieId;
         return RedirectToPage();
     }
 
@@ -39,6 +41,7 @@ public class IndexModel : PageModel
     {
         var userId = userManager.GetUserId(User);
         movieRepo.RemoveFromWatchList(userId, MovieId);
+        PageViewHash = MovieId;
         return RedirectToPage();
     }
 
