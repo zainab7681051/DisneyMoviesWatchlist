@@ -35,17 +35,13 @@ public class IndexModel : PageModel
         this.movieRepo = movieRepo;
         this.userManager = userManager;
         this.memoryCache=memoryCache;
-
-        if(!memoryCache.TryGetValue<int>("PageViewHash", out int v))
-        {
-            PageViewHash = 0;
-        }
     }
 
     public void OnGet()
     {
         Movies = movieRepo.GetAll(query);
     }
+
     public IActionResult OnPostAdd(int MovieId)
     {
         var userId = userManager.GetUserId(User);

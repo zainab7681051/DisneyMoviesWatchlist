@@ -78,7 +78,6 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var hash = "@Model.PageViewHash"
-        console.log(`hash is : ${!hash ? "null": hash}`)
         if (hash) {
             const movieElement = document.getElementById(`movie-${hash}`);
             if (movieElement) {
