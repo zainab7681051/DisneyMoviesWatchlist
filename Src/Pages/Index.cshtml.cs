@@ -39,7 +39,11 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
-        Movies = movieRepo.GetAll(query);
+        Movies = (movieRepo.GetAll(query)).ToList();
+        if(string.IsNullOrEmpty(query))
+        {
+            Movies = Movies.Where(s => s.Title.Equals(query, StringComparison.OrdinalIgnoreCase));
+        }
     }
 
     public IActionResult OnPostAdd(int MovieId)
