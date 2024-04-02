@@ -16,7 +16,7 @@ public class MovieRepository : IMovieRepository
     }
 
 
-    public IEnumerable<MovieDto> GetAll(string query)
+    public List<MovieDto> GetAll(string query)
     {
         var Movies = from m in context.DisneyMovies
                      select m;
@@ -28,7 +28,7 @@ public class MovieRepository : IMovieRepository
         // {
         //     MovieList = MovieList.Where(s => s.Title.Equals(query, StringComparison.OrdinalIgnoreCase));
         // }
-        return (Movies.Select(m => m.MovieLessDetail()));
+        return Movies.Select(m => m.MovieLessDetail()).ToList();
     }
 
     public Movie GetOne(int MovieId)

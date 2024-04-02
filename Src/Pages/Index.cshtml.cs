@@ -21,11 +21,11 @@ public class IndexModel : PageModel
     public string? query { get; set; }
 
 
-    public int PageViewHash 
-        { 
-            get => memoryCache.Get<int>("PageViewHash"); 
-            set => memoryCache.Set("PageViewHash", value, TimeSpan.FromSeconds(7));
-        }
+    public int PageViewHash
+    {
+        get => memoryCache.Get<int>("PageViewHash");
+        set => memoryCache.Set("PageViewHash", value, TimeSpan.FromSeconds(7));
+    }
 
     public IndexModel(
         IMovieRepository movieRepo,
@@ -34,15 +34,15 @@ public class IndexModel : PageModel
     {
         this.movieRepo = movieRepo;
         this.userManager = userManager;
-        this.memoryCache=memoryCache;
+        this.memoryCache = memoryCache;
     }
 
     public void OnGet()
     {
-        Movies = (movieRepo.GetAll(query)).ToList();
-        if(string.IsNullOrEmpty(query))
+        Movies = movieRepo.GetAll(query);
+        if (!string.IsNullOrEmpty(query))
         {
-            Movies = Movies.Where(s => s.Title.Equals(query, StringComparison.OrdinalIgnoreCase));
+            Movies = Movies.Where(s => s.Title.Contains(query, StringComparison.OrdinalIgnoreCase)).ToList();
         }
     }
 
@@ -50,7 +50,7 @@ public class IndexModel : PageModel
     {
         var userId = userManager.GetUserId(User);
         movieRepo.AddToWatchList(userId, MovieId);
-        if(memoryCache.Get<int>("PageViewHash")==0)
+        if (memoryCache.Get<int>("PageViewHash") == 0)
         {
             PageViewHash = MovieId;
         }
@@ -61,7 +61,7 @@ public class IndexModel : PageModel
     {
         var userId = userManager.GetUserId(User);
         movieRepo.RemoveFromWatchList(userId, MovieId);
-        if(memoryCache.Get<int>("PageViewHash") ==0)
+        if (memoryCache.Get<int>("PageViewHash") == 0)
         {
             PageViewHash = MovieId;
         }
