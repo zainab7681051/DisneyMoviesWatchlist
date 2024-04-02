@@ -12,7 +12,7 @@ public class WatchlistModel : PageModel
 {
     private readonly IMovieRepository movieRepo;
     private readonly UserManager<IdentityUser> userManager;
-    public List<MovieDto>? Movies { get; set; }
+    public List<MovieDto> Movies { get; set; }
 
     public WatchlistModel(
         IMovieRepository movieRepo,

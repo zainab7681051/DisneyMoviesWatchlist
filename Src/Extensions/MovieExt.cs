@@ -12,7 +12,8 @@ public static class MovieExt
             Title = movie.Title ?? "no title",
             Year = movie.Year ?? "no year",
             Image = movie.Image ?? "",
-            Rating = movie.Rating ?? "no rating"
+            Rating = movie.Rating ?? "no rating",
+            Genre = movie.Genre ?? "no genres"
         };
     }
 }

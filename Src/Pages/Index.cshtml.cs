@@ -14,11 +14,11 @@ public class IndexModel : PageModel
     private readonly IMemoryCache memoryCache;
 
 
-    public List<MovieDto>? Movies { get; set; }
+    public List<MovieDto> Movies { get; set; }
 
 
     [BindProperty(SupportsGet = true)]
-    public string? query { get; set; }
+    public string query { get; set; }
 
 
     public int PageViewHash
@@ -42,7 +42,7 @@ public class IndexModel : PageModel
         Movies = movieRepo.GetAll(query);
         if (!string.IsNullOrEmpty(query))
         {
-            Movies = Movies.Where(s => s.Title.Contains(query, StringComparison.OrdinalIgnoreCase)).ToList();
+            Movies = Movies.Where(s => s.Title.Contains(query, StringComparison.OrdinalIgnoreCase) || s.Year.Contains(query, StringComparison.OrdinalIgnoreCase)).ToList();
         }
     }
 

@@ -51,11 +51,10 @@ public class MovieRepository : IMovieRepository
     public void AddToWatchList(string UserId, int MovieId)
     {
         var movie = context.DisneyMovies.Find(MovieId);
-        var movieId = movie.MovieId;
         context.MoviesAndUsers.Add(new MovieAndUser
         {
             UserId = UserId,
-            MovieId = movieId
+            MovieId = movie.MovieId
         });
         context.SaveChanges();
     }

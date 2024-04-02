@@ -10,7 +10,7 @@ public class MovieModel : PageModel
 {
     private readonly IMovieRepository movieRepo;
     private readonly UserManager<IdentityUser> userManager;
-    public Movie? DisneyMovie { get; set; }
+    public Movie DisneyMovie { get; set; }
 
     public MovieModel(
         IMovieRepository movieRepo,
