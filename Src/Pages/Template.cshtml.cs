@@ -8,7 +8,7 @@ using DisneyMoviesWatchlist.Src.Extensions;
 
 namespace DisneyMoviesWatchlist.Src.Pages;
 
-public class IndexModel : PageModel
+public class TemplateModel : PageModel
 {
     private readonly IMovieRepository movieRepo;
     private readonly UserManager<IdentityUser> userManager;
@@ -16,7 +16,7 @@ public class IndexModel : PageModel
 
 
     public List<MovieDto> Movies { get; set; }
-
+    public List<Movie> HeroSectionItems { get; set; }
 
     [BindProperty(SupportsGet = true)]
     public string query { get; set; }
@@ -27,8 +27,7 @@ public class IndexModel : PageModel
         get => memoryCache.Get<int>("PageViewHash");
         set => memoryCache.Set("PageViewHash", value, TimeSpan.FromSeconds(7));
     }
-
-    public IndexModel(
+    public TemplateModel(
         IMovieRepository movieRepo,
         UserManager<IdentityUser> userManager,
         IMemoryCache memoryCache)
@@ -40,7 +39,15 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
-        Movies = movieRepo.GetAll(query).Select(m => m.MovieLessDetail()).ToList();
+        var AllMovies = movieRepo.GetAll(query);
+        Random rnd = new();
+        for (int i = 0; i < 4; i++)
+        {
+            int randomNumber = rnd.Next(0, 72); // Generates a random number between 0 and 71
+            HeroSectionItems.Add(AllMovies[randomNumber]);
+        }
+
+        Movies = AllMovies.Select(m => m.MovieLessDetail()).ToList();
         if (!string.IsNullOrEmpty(query))
         {
             Movies = Movies.Where(s => s.Title.Contains(query, StringComparison.OrdinalIgnoreCase) || s.Year.Contains(query, StringComparison.OrdinalIgnoreCase)).ToList();

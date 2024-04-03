@@ -16,19 +16,13 @@ public class MovieRepository : IMovieRepository
     }
 
 
-    public List<MovieDto> GetAll(string query)
+    public List<Movie> GetAll(string query)
     {
         var Movies = from m in context.DisneyMovies
                      select m;
 
         Movies = Movies.OrderByDescending(s => s.MovieId);
-
-        // var MovieList = (Movies.Select(e => e.MovieLessDetail())).ToList();
-        // if (!string.IsNullOrEmpty(query))
-        // {
-        //     MovieList = MovieList.Where(s => s.Title.Equals(query, StringComparison.OrdinalIgnoreCase));
-        // }
-        return Movies.Select(m => m.MovieLessDetail()).ToList();
+        return Movies.ToList();
     }
 
     public Movie GetOne(int MovieId)
