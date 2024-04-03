@@ -1,5 +1,4 @@
-﻿
-.nav-link-span {
+﻿.nav-link-span {
   color: #000;
   font-weight: 600;
   transition: color .3s ease;
@@ -24,12 +23,13 @@
 
 
 .navbar-toggler {
-    border-color: transparent;
+  border-color: transparent;
 }
 
-.navbar-toggler:focus{
+.navbar-toggler:focus {
   box-shadow: 0 0 0 0;
 }
+
 .navbar-toggler span {
   width: 2.5rem;
   height: 0.6rem;

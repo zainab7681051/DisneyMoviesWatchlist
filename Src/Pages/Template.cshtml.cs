@@ -41,6 +41,7 @@ public class TemplateModel : PageModel
     {
         var AllMovies = movieRepo.GetAll(query);
         Random rnd = new();
+        HeroSectionItems = new();
         for (int i = 0; i < 4; i++)
         {
             int randomNumber = rnd.Next(0, 72); // Generates a random number between 0 and 71
