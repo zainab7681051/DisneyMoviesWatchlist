@@ -3,151 +3,168 @@
 @{
     ViewData["Title"] = "Temp page";
 }
+@if (Model.Movies != null)
+{
+    @if (!Model.Movies.Any() && !string.IsNullOrEmpty(Model.query))
+    {
+        <div class="text-center">
+            <h5>no search results for "@Model.query".</h5>
+        </div>
+    }
+    else
+    {
+        @if (Model.HeroSectionItems.Any() && string.IsNullOrEmpty(Model.query))
+        {
+            @* Top-Hero-Section, Left and Right *@
+            <div class="hero-section w-clearfix">
+                @* Main-Hero-Section, Left*@
+                <div class="hero-column">
+                    <div class="header-list-wrapper w-dyn-list">
+                        <div role="list" class="header-list w-dyn-items">
+                            <div role="listitem" class="header-item w-dyn-item"><a asp-page="./Movie"
+                                    asp-route-MovieId="@Model.HeroSectionItems[0].MovieId"
+                                    class="header-item-link-block w-inline-block">
+                                    <div class="header-item-overlay">
+                                        <div class="item-titles-wrapper">
+                                            <div class="highlight-item-content-block">
+                                                <div class="large-rating-number">@Model.Movies[0].Rating</div>
+                                                <h1 class="large-item-title mobile-align-left">@Model.HeroSectionItems[0].Title</h1>
+                                                <div class="info-wrapper large">
+                                                    <div class="info-block"><img
+                                                            src="https://assets.website-files.com/59f5ab35fccfea0001f70443/5a0973aee1339f0001a7cebe_tag.svg"
+                                                            alt="" class="info-block-icon">
+                                                        <div class="info-title-link">@Model.HeroSectionItems[0].Genre</div>
+                                                    </div>
+                                                    <div class="info-block"><img
+                                                            src="https://assets.website-files.com/59f5ab35fccfea0001f70443/5a0973abd092d00001df9c0e_clock.svg"
+                                                            alt="" class="info-block-icon">
+                                                        <div class="info-title">@Model.HeroSectionItems[0].Year</div>
+                                                    </div>
+                                                </div>
+                                                <p class="highlight-paragraph">@Model.HeroSectionItems[0].Summary</p>
+                                                <div class="button outline-button hide-mobile">Read&nbsp;More</div>
+                                            </div>
+                                            <div class="author-block bottom-right push-up w-clearfix">
+                                                <div class="author-name">@Model.HeroSectionItems[0].Directors</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="background-image: url(&quot;@Model.HeroSectionItems[0].Image&quot;); transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
+                                        class="item-image"></div>
+                                </a></div>
+                        </div>
+                    </div>
+                </div>
+                @* Secondary-Hero-Section, Right *@
+                <div class="hero-column right-column">
+                    <div class="header-list-wrapper half w-dyn-list">
+                        <div role="list" class="header-list w-dyn-items">
+                            @* First-top-item *@
+                            <div role="listitem" class="header-item half w-dyn-item"><a asp-page="./Movie"
+                                    asp-route-MovieId="@Model.HeroSectionItems[1].MovieId"
+                                    class="header-item-link-block w-inline-block">
+                                    <div class="header-item-overlay">
+                                        <div class="item-titles-wrapper small">
+                                            <div class="highlight-item-content-block full">
+                                                <div class="large-rating-number small">@Model.HeroSectionItems[1].Rating</div>
+                                                <h1 class="large-item-title medium">@Model.HeroSectionItems[1].Title</h1>
+                                                <div class="info-wrapper large">
+                                                    <div class="info-block"><img
+                                                            src="https://assets.website-files.com/59f5ab35fccfea0001f70443/5a0973aee1339f0001a7cebe_tag.svg"
+                                                            alt="" class="info-block-icon">
+                                                        <div class="info-title-link">@Model.HeroSectionItems[1].Genre</div>
+                                                    </div>
+                                                    <div class="info-block"><img
+                                                            src="https://assets.website-files.com/59f5ab35fccfea0001f70443/5a0973abd092d00001df9c0e_clock.svg"
+                                                            alt="" class="info-block-icon">
+                                                        <div class="info-title">@Model.HeroSectionItems[1].Year</div>
+                                                    </div>
+                                                </div>
+                                                <div class="button outline-button hide-mobile">Read&nbsp;More</div>
+                                            </div>
+                                            <div class="author-block bottom-right push-up hide-on-mobile w-clearfix">
+                                                <div class="author-name">@Model.HeroSectionItems[1].Directors</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="background-image: url(&quot;@Model.HeroSectionItems[1].Image&quot;); transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
+                                        class="item-image"></div>
+                                </a></div>
+                        </div>
+                    </div>
+                    @* two-bottom-items *@
+                    <div class="header-list-wrapper second-half w-dyn-list">
+                        <div role="list" class="header-list w-dyn-items w-row">
+                            <div role="listitem" class="header-item half w-dyn-item w-col w-col-6"><a asp-page="./Movie"
+                                    asp-route-MovieId="@Model.HeroSectionItems[2].MovieId"
+                                    class="header-item-link-block w-inline-block">
+                                    <div class="header-item-overlay">
+                                        <div class="item-titles-wrapper small">
+                                            <div class="highlight-item-content-block full">
+                                                <div class="large-rating-number small">@Model.HeroSectionItems[2].Rating</div>
+                                                <h1 class="large-item-title medium mobile-small">@Model.HeroSectionItems[2].Title
+                                                </h1>
+                                                <div class="info-wrapper large">
+                                                    <div class="info-block"><img
+                                                            src="https://assets.website-files.com/59f5ab35fccfea0001f70443/5a0973aee1339f0001a7cebe_tag.svg"
+                                                            alt="" class="info-block-icon">
+                                                        <div class="info-title-link">@Model.HeroSectionItems[2].Genre</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="background-image: url(&quot;@Model.HeroSectionItems[2].Image&quot;); transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
+                                        class="item-image"></div>
+                                </a></div>
+                            <div role="listitem" class="header-item half w-dyn-item w-col w-col-6"><a asp-page="./Movie"
+                                    asp-route-MovieId="@Model.HeroSectionItems[3].MovieId"
+                                    class="header-item-link-block w-inline-block">
+                                    <div class="header-item-overlay">
+                                        <div class="item-titles-wrapper small">
+                                            <div class="highlight-item-content-block full">
+                                                <div class="large-rating-number small">@Model.HeroSectionItems[3].Rating</div>
+                                                <h1 class="large-item-title medium mobile-small">@Model.HeroSectionItems[3].Title
+                                                </h1>
+                                                <div class="info-wrapper large">
+                                                    <div class="info-block"><img
+                                                            src="https://assets.website-files.com/59f5ab35fccfea0001f70443/5a0973aee1339f0001a7cebe_tag.svg"
+                                                            alt="" class="info-block-icon">
+                                                        <div class="info-title-link">@Model.HeroSectionItems[3].Genre</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="background-image: url(&quot;@Model.HeroSectionItems[3].Image&quot;); transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
+                                        class="item-image"></div>
+                                </a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
 
-@* Top-Hero-Section, Left and Right *@
-<div class="hero-section w-clearfix">
-    @* Main-Hero-Section, Left*@
-    <div class="hero-column">
-        <div class="header-list-wrapper w-dyn-list">
-            <div role="list" class="header-list w-dyn-items">
-                <div role="listitem" class="header-item w-dyn-item"><a asp-page="./Movie"
-                        asp-route-MovieId="@Model.HeroSectionItems[0].MovieId"
-                        class="header-item-link-block w-inline-block">
-                        <div class="header-item-overlay">
-                            <div class="item-titles-wrapper">
-                                <div class="highlight-item-content-block">
-                                    <div class="large-rating-number">@Model.Movies[0].Rating</div>
-                                    <h1 class="large-item-title mobile-align-left">@Model.HeroSectionItems[0].Title</h1>
-                                    <div class="info-wrapper large">
-                                        <div class="info-block mobile-full"><img alt=""
-                                                src="https://assets.website-files.com/59f5ae906a27c400013267f0/5c3d9f44d6365779d84b705c_Stars-5.svg"
-                                                class="info-block-icon stars"></div>
-                                        <div class="info-block"><img
-                                                src="https://assets.website-files.com/59f5ab35fccfea0001f70443/5a0973aee1339f0001a7cebe_tag.svg"
-                                                alt="" class="info-block-icon">
-                                            <div class="info-title-link">@Model.HeroSectionItems[0].Genre</div>
-                                        </div>
-                                        <div class="info-block"><img
-                                                src="https://assets.website-files.com/59f5ab35fccfea0001f70443/5a0973abd092d00001df9c0e_clock.svg"
-                                                alt="" class="info-block-icon">
-                                            <div class="info-title">@Model.HeroSectionItems[0].Year</div>
-                                        </div>
-                                    </div>
-                                    <p class="highlight-paragraph">@Model.HeroSectionItems[0].Summary</p>
-                                    <div class="button outline-button hide-mobile">Read&nbsp;More</div>
-                                </div>
-                                <div class="author-block bottom-right push-up w-clearfix">
-                                    <div style="background-image:url(&quot;https://assets-global.website-files.com/59f5ae906a27c400013267f0/5a0971097dd52a0001692aef_Portrait-3.jpg&quot;)"
-                                        class="author-image-block"></div>
-                                    <div class="author-name">@Model.HeroSectionItems[0].Directors</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="background-image: url(&quot;@Model.HeroSectionItems[0].Image&quot;); transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
-                            class="item-image"></div>
-                    </a></div>
-            </div>
+    @* search-field *@
+    <div class="section">
+        <div class="search-wrapper">
+            <div class="search-title">Search for a Movie by Tile and/or By Year:</div>
+            <form class="search-form">
+                <input type="text" class="search-field" asp-for="query" placeholder="search for movie...">
+                <input type="submit" class="search-button" value=".">
+            </form>
         </div>
     </div>
-    @* Secondary-Hero-Section, Right *@
-    <div class="hero-column right-column">
-        <div class="header-list-wrapper half w-dyn-list">
-            <div role="list" class="header-list w-dyn-items">
-                @* First-top-item *@
-                <div role="listitem" class="header-item half w-dyn-item"><a asp-page="./Movie"
-                        asp-route-MovieId="@Model.HeroSectionItems[1].MovieId"
-                        class="header-item-link-block w-inline-block">
-                        <div class="header-item-overlay">
-                            <div class="item-titles-wrapper small">
-                                <div class="highlight-item-content-block full">
-                                    <div class="large-rating-number small">@Model.HeroSectionItems[1].Rating</div>
-                                    <h1 class="large-item-title medium">@Model.HeroSectionItems[1].Title</h1>
-                                    <div class="info-wrapper large">
-                                        <div class="info-block mobile-full"><img alt=""
-                                                src="https://assets.website-files.com/59f5ae906a27c400013267f0/5c3d9ef28bb4597313e39aff_Stars-4.svg"
-                                                class="info-block-icon stars"></div>
-                                        <div class="info-block"><img
-                                                src="https://assets.website-files.com/59f5ab35fccfea0001f70443/5a0973aee1339f0001a7cebe_tag.svg"
-                                                alt="" class="info-block-icon">
-                                            <div class="info-title-link">@Model.HeroSectionItems[1].Genre</div>
-                                        </div>
-                                        <div class="info-block"><img
-                                                src="https://assets.website-files.com/59f5ab35fccfea0001f70443/5a0973abd092d00001df9c0e_clock.svg"
-                                                alt="" class="info-block-icon">
-                                            <div class="info-title">@Model.HeroSectionItems[1].Year</div>
-                                        </div>
-                                    </div>
-                                    <div class="button outline-button hide-mobile">Read&nbsp;More</div>
-                                </div>
-                                <div class="author-block bottom-right push-up hide-on-mobile w-clearfix">
-                                    <div style="background-image:url(&quot;https://assets-global.website-files.com/59f5ae906a27c400013267f0/5a097100d65a2f0001bcecad_Portrait-1.jpg&quot;)"
-                                        class="author-image-block"></div>
-                                    <div class="author-name">@Model.HeroSectionItems[1].Directors</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="background-image: url(&quot;@Model.HeroSectionItems[1].Image&quot;); transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
-                            class="item-image"></div>
-                    </a></div>
-            </div>
-        </div>
-        @* two-bottom-items *@
-        <div class="header-list-wrapper second-half w-dyn-list">
-            <div role="list" class="header-list w-dyn-items w-row">
-                <div role="listitem" class="header-item half w-dyn-item w-col w-col-6"><a asp-page="./Movie"
-                        asp-route-MovieId="@Model.HeroSectionItems[3].MovieId"
-                        class="header-item-link-block w-inline-block">
-                        <div class="header-item-overlay">
-                            <div class="item-titles-wrapper small">
-                                <div class="highlight-item-content-block full">
-                                    <div class="large-rating-number small">@Model.HeroSectionItems[2].Genre</div>
-                                    <h1 class="large-item-title medium mobile-small">@Model.HeroSectionItems[2].Title
-                                    </h1>
-                                    <div class="info-wrapper large">
-                                        <div class="info-block"><img alt=""
-                                                src="https://assets.website-files.com/59f5ae906a27c400013267f0/5c3d9ef28bb4597313e39aff_Stars-4.svg"
-                                                class="info-block-icon stars"></div>
-                                        <div class="info-block"><img
-                                                src="https://assets.website-files.com/59f5ab35fccfea0001f70443/5a0973aee1339f0001a7cebe_tag.svg"
-                                                alt="" class="info-block-icon">
-                                            <div class="info-title-link">@Model.HeroSectionItems[2].Genre</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="background-image: url(&quot;@Model.HeroSectionItems[2].Image&quot;); transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
-                            class="item-image"></div>
-                    </a></div>
-                <div role="listitem" class="header-item half w-dyn-item w-col w-col-6"><a asp-page="./Movie"
-                        asp-route-MovieId="@Model.HeroSectionItems[3].MovieId"
-                        class="header-item-link-block w-inline-block">
-                        <div class="header-item-overlay">
-                            <div class="item-titles-wrapper small">
-                                <div class="highlight-item-content-block full">
-                                    <div class="large-rating-number small">@Model.HeroSectionItems[3].Rating</div>
-                                    <h1 class="large-item-title medium mobile-small">@Model.HeroSectionItems[3].Title
-                                    </h1>
-                                    <div class="info-wrapper large">
-                                        <div class="info-block"><img alt=""
-                                                src="https://assets.website-files.com/59f5ae906a27c400013267f0/5c3d9f3dfa928d708a18edf4_Stars-1.svg"
-                                                class="info-block-icon stars"></div>
-                                        <div class="info-block"><img
-                                                src="https://assets.website-files.com/59f5ab35fccfea0001f70443/5a0973aee1339f0001a7cebe_tag.svg"
-                                                alt="" class="info-block-icon">
-                                            <div class="info-title-link">@Model.HeroSectionItems[3].Genre</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="background-image: url(&quot;@Model.HeroSectionItems[3].Image&quot;); transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
-                            class="item-image"></div>
-                    </a></div>
-            </div>
-        </div>
+}
+else
+{
+    <div class="text-center">
+        <h5>no Movies are available right now.</h5>
     </div>
-</div>
+}
+
+
 
 @*
 <div class="text-center">
