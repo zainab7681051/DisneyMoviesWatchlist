@@ -16,7 +16,7 @@ public class IndexModel : PageModel
 
 
     public List<MovieDto> Movies { get; set; }
-
+    public List<Movie> HeroSectionItems { get; set; }
 
     [BindProperty(SupportsGet = true)]
     public string query { get; set; }
@@ -27,7 +27,6 @@ public class IndexModel : PageModel
         get => memoryCache.Get<int>("PageViewHash");
         set => memoryCache.Set("PageViewHash", value, TimeSpan.FromSeconds(7));
     }
-
     public IndexModel(
         IMovieRepository movieRepo,
         UserManager<IdentityUser> userManager,
@@ -40,11 +39,23 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
-        Movies = movieRepo.GetAll(query).Select(m => m.MovieLessDetail()).ToList();
+        HeroSectionItems = new();
+        var AllMovies = movieRepo.GetAll(query);
+        Movies = AllMovies.Select(m => m.MovieLessDetail()).ToList();
         if (!string.IsNullOrEmpty(query))
         {
             Movies = Movies.Where(s => s.Title.Contains(query, StringComparison.OrdinalIgnoreCase) || s.Year.Contains(query, StringComparison.OrdinalIgnoreCase)).ToList();
         }
+        else
+        {
+            Random rnd = new();
+            for (int i = 0; i < 4; i++)
+            {
+                int randomNumber = rnd.Next(0, 72);
+                HeroSectionItems.Add(AllMovies[randomNumber]);
+            }
+        }
+
     }
 
     public IActionResult OnPostAdd(int MovieId)

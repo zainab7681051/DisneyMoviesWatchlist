@@ -1,132 +1,31 @@
- @import url('https://fonts.googleapis.com/css2?&family=Satisfy&family=Quicksand&display=swap');
-
-:root {
-  --bg-color-p: #0e0648;
-  --bg-color-p-dark: #100b29;
-  --bg-color-s: #e89500;
-  --bg-color-s-dark: #d98c00;
-  --light-blue: #dbf2ff;
-}
-
 html {
-  font-size: 14px;
-  background-color: var(--bg-color-p);
-  
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
+.section-message {
+  margin-top: 15px;
+  color: #8ea3b3;
+  font-size: 35px;
+  font-weight: 300;
+  text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+  .hero-section {
+    margin-top: 0px;
+  }
+
+  .hero-column {
+    height: fit-content;
+  }
+
+  .container.push-up {
+    margin-top: unset;
+  }
+
+  .search-wrapper {
+    display: block;
+    margin: 50px auto 50px;
   }
 }
-
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  font-family: 'Quicksand', sans-serif;
-  margin-bottom: 60px;
-}
-
-.col-md-8 h5{
- text-transform: uppercase; 
- font-weight: bold;
-}
-.col-md-8 h5 span {
-  font-weight: 300;
-  text-transform: none;
-}
-
-a {
-  text-decoration: none;
-  color: var(--bg-color-s);
-  transition: color .3s ease;
-}
-
-a:hover {
-  color: var(--light-blue);
-}
-
-
-.MovieCard {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.MovieCard .card {
-  background-color: var(--bg-color-p-dark);
-  display: flex;
-  align-items: center;
-}
-
-.title-link.card-title {
-  color: var(--light-blue);
-}
-
-.nav-link {
-  color: #000;
-  font-weight: 600;
-  transition: color .3s ease;
-}
-
-.nav-link:hover {
-  color: var(--light-blue);
-}
-
-.btn-primary {
-  background-color: var(--bg-color-s-dark);
-  border-color: var(--bg-color-s-dark);
-  transition: all .3s ease;
-}
-
-.btn-primary:hover {
-  background-color: var(--bg-color-s);
-  border-color: var(--bg-color-s);
-}
-
-.form-control:focus {
-  border-color: var(--bg-color-s-dark);
-  box-shadow: 0 0 0 .25rem var(--bg-color-s);
-}
-
-label.form-label {
-  color: #000
-}
-
-div.checkbox.mb-3>label {
-  color: #fff
-}
-
-.text-danger {
-  color: #ee0a02 !important
-}
-
-.form-check-input:checked {
-  background-color: var(--bg-color-s);
-  border-color: var(--bg-color-s);
-}
-
-.nav-pills .nav-link{
-  color:#fff;
-  transition: color .3s ease;
-}
-.nav-pills .nav-link:hover{
-  color:var(--bg-color-s);
-}
-.nav-pills .nav-link.active{
-  background-color: var(--bg-color-s);
-  color:#fff;
-}
-.form-control:disabled, .form-control[readonly]{
-  background-color: #c2c0c0;
-}
-
-.display-4{
-  text-transform: capitalize;
-} 
