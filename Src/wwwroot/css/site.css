@@ -11,7 +11,29 @@ html {
   text-align: center;
 }
 
+.section.footer {
+  padding-top: 140px;
+  padding-bottom: 0px;
+  background-color: #070c0f;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#081b27), to(rgba(8, 27, 39, 0.8))), url("https://assets.website-files.com/59f5ab35fccfea0001f70443/5a099901d345d400015ce0a7_Photo-8.jpg");
+  background-image: linear-gradient(180deg, #081b27, rgba(8, 27, 39, 0.8)), url("../footer-pic.jfif");
+  background-position: 0px 0px, 50% 50%;
+  background-size: auto, cover;
+  font-size: 15px;
+}
+
+.item-number {
+  top: -3%
+}
+
+.bookmark-circle {
+  transform: translate3d(0px, 150px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+  opacity: 1;
+  transform-style: preserve-3d;
+}
+
 @media screen and (max-width: 767px) {
+
   .hero-section {
     margin-top: 0px;
   }
@@ -27,5 +49,29 @@ html {
   .search-wrapper {
     display: block;
     margin: 50px auto 50px;
+  }
+
+  .dynamic-page-header {
+    height: fit-content;
+    min-height: 0;
+  }
+
+  .item-number {
+    top: 8%
+  }
+
+  .section-message {
+    font-size: 25px;
+  }
+
+  .bookmark-circle {
+    transform: translate3d(0px, 50px, 0px)
+  }
+}
+
+@media screen and (min-width: 768px) {
+
+  .dynamic-header-overlay {
+    height: 110%;
   }
 }

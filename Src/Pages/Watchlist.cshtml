@@ -4,54 +4,66 @@
     ViewData["Title"] = "Watchlist page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Your WatchList</h1>
-</div>
+<partial name="_HeaderPartial" />
 
-<div class="container">
-    <div class="row">
-        @if (Model.Movies != null)
-        {
-            @if (!Model.Movies.Any())
-            {
-                <div class="text-center">
-                    <h5>no Movies in your WatchList rigth now.</h5>
+@if (Model.Movies != null)
+{
+    @if (!Model.Movies.Any())
+    {
+        <div class="section">
+            <div class="section-message">no Movies in your WatchList rigth now.</div>
+        </div>
+    }
+    else
+    {
+        <div id="movies" class="section">
+            <div class="container w-container">
+                <div class="section-title-wrapper align-left">
+                    <h1 class="section-title">Watchlist<br></h1>
                 </div>
-            }
-            else
-            {
-                @foreach (var movie in Model.Movies)
-                {
-                    <div id="movie-@movie.MovieId" class="MovieCard col-md-4">
-                        <div class="card mt-2">
-                            <a asp-page="./Movie" asp-route-MovieId="@movie.MovieId">
-                                <img src="@movie.Image" class="card-img-top" alt="@movie.Title+' '+@movie.Year">
-                            </a>
-                            <div class="card-body">
-                                <a asp-page="./Movie" asp-route-MovieId="@movie.MovieId">
-                                    <h5 class="title-link card-title">@movie.Title - @movie.Year</h5>
-                                </a>
-                                <p class="card-text bold">@movie.Rating / 10</p>
+                <div class="item-list-wrapper w-dyn-list">
+                    <div role="list" class="item-list w-dyn-items w-row">
+                        @foreach (var movie in Model.Movies)
+                        {
+                            <div role="listitem" class="item w-dyn-item w-col w-col-3">
+                                <div class="item-block">
+                                    <a asp-page="./Movie" asp-route-MovieId="@movie.MovieId"
+                                        style="background-image:url(&quot;@movie.Image&quot;)"
+                                        class="item-image-block poster-format w-inline-block">
+                                    </a>
+                                    <div class="item-number" style="right:51px">@movie.Rating</div>
+                                    <form method="post">
+                                        <div class="item-number" style="right:-51px">
+                                            <button title='remove "@movie.Title" from your Watchlist' style="background-color:transparent;
+                                                    height:30px;" asp-page-handler="Remove"
+                                                asp-route-MovieId="@movie.MovieId">
+                                                <span class="material-symbols-outlined">
+                                                    bookmark
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </form>
+                                    <a asp-page="./Movie" asp-route-MovieId="@movie.MovieId" class="item-block-title">@movie.Title
+                                    </a>
+                                    <div class="info-wrapper small">
+                                        <div class="info-block">
+                                            <img src="https://assets.website-files.com/59f5ab35fccfea0001f70443/5a0973aee1339f0001a7cebe_tag.svg"
+                                                alt="" class="info-block-icon small">
+                                            @movie.Genre
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
-                            <form method="post">
-
-                                <button class="btn btn-danger mb-2" asp-page-handler="Remove" asp-route-MovieId="@movie.MovieId">
-                                    <span>Remove from Watchlist</span>
-                                </button>
-
-                            </form>
-
-                        </div>
+                        }
                     </div>
-                }
-            }
-        }
-        else
-        {
-            <div class="text-center">
-                <h5>no Movies are available rigth now.</h5>
+                </div>
             </div>
-        }
+        </div>
+    }
+}
+else
+{
+    <div class="section">
+        <div class="section-message">No Movies are available right now.</div>
     </div>
-</div>
+}

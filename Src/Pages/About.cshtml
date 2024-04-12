@@ -1,10 +1,22 @@
-﻿@page "about"
+﻿@page
 @model AboutModel
 @{
-    ViewData["Title"] = "About";
+    ViewData["Title"] = "About page";
 }
-<h1 class="display-4">@ViewData["Title"]</h1>
-
-<p>About this Project:</p>
-<p>DisneyMoviesWatchlist is a server-side web application in C# - ASP.NET Core, Entity Framework and RazorPages. Users
-    can create an account and make a watchist of their favourite Disney animation movies.</p>
+<partial name="_HeaderPartial" />
+<div class="image-header">
+    <div class="image-header-overlay">
+        <div class="container w-container">
+            <div class="header-intro-block">
+                <h1 data-ix="fade-in-on-load" class="subpage-title">About</h1>
+                <p data-ix="fade-in-on-load-3" class="subpage-intro-paragraph">
+                    DisneyMoviesWatchlist is a server-side web application in C# - ASP.NET Core, Entity Framework and
+                    RazorPages. Users
+                    can create an account and make a watchist of their favourite Disney animation movies.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="section"></div>
+</div>
+<partial name="_FooterPartial" />

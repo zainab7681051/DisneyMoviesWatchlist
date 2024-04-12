@@ -44,13 +44,16 @@ public class MovieRepository : IMovieRepository
 
     public void AddToWatchList(string UserId, int MovieId)
     {
-        var movie = context.DisneyMovies.Find(MovieId);
-        context.MoviesAndUsers.Add(new MovieAndUser
+        if (!IsInWatchList(UserId, MovieId))
         {
-            UserId = UserId,
-            MovieId = movie.MovieId
-        });
-        context.SaveChanges();
+            var movie = context.DisneyMovies.Find(MovieId);
+            context.MoviesAndUsers.Add(new MovieAndUser
+            {
+                UserId = UserId,
+                MovieId = movie.MovieId
+            });
+            context.SaveChanges();
+        }
     }
 
     public bool IsInWatchList(string UserId, int MovieId)
@@ -62,10 +65,13 @@ public class MovieRepository : IMovieRepository
 
     public void RemoveFromWatchList(string UserId, int MovieId)
     {
-        var movie = context.DisneyMovies.Find(MovieId);
-        var x = context.MoviesAndUsers.Find(UserId, movie.MovieId);
-        context.MoviesAndUsers.Remove(x);
-        context.SaveChanges();
+        if (IsInWatchList(UserId, MovieId))
+        {
+            var movie = context.DisneyMovies.Find(MovieId);
+            var x = context.MoviesAndUsers.Find(UserId, movie.MovieId);
+            context.MoviesAndUsers.Remove(x);
+            context.SaveChanges();
+        }
     }
 
 }

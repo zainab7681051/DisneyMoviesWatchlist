@@ -18,7 +18,7 @@
         @if (Model.HeroSectionItems.Any())
         {
             @* Top-Hero-Section*@
-            <div class="hero-section w-clearfix">
+            <div id="hero" class="hero-section w-clearfix">
                 @* Main-Hero-Section, Left*@
                 <div class="hero-column">
                     <div class="header-list-wrapper w-dyn-list">
@@ -151,29 +151,29 @@
         <partial name="_HeaderPartial" />
 
         @* ALL MOVIES *@
-        <div class="section">
+        <div id="movies" class="section">
             <div class="container w-container">
                 <div class="section-title-wrapper align-left">
                     <h1 class="section-title">Disney Animation Movies<br></h1>
                 </div>
-                <div data-duration-in="300" data-duration-out="100" data-current="Author Picks" data-easing="ease"
-                    class="tabs w-tabs">
-                    <div class="tabs-menu w-tab-menu" role="tablist"><a data-w-tab="Author Picks"
-                            class="tab-button w-inline-block w-tab-link w--current" id="w-tabs-0-data-w-tab-0"
-                            href="#w-tabs-0-data-w-pane-0" role="tab" aria-controls="w-tabs-0-data-w-pane-0"
-                            aria-selected="true">
-                            <div>Author Picks</div>
-                        </a><a data-w-tab="Featured" class="tab-button w-inline-block w-tab-link" tabindex="-1"
-                            id="w-tabs-0-data-w-tab-1" href="#w-tabs-0-data-w-pane-1" role="tab"
-                            aria-controls="w-tabs-0-data-w-pane-1" aria-selected="false">
-                            <div>Featured</div>
-                        </a><a data-w-tab="New" class="tab-button w-inline-block w-tab-link" tabindex="-1"
-                            id="w-tabs-0-data-w-tab-2" href="#w-tabs-0-data-w-pane-2" role="tab"
-                            aria-controls="w-tabs-0-data-w-pane-2" aria-selected="false">
-                            <div>New</div>
-                        </a>
-                    </div>
-                </div>
+                @* <div data-duration-in="300" data-duration-out="100" data-current="Author Picks" data-easing="ease"
+        class="tabs w-tabs">
+        <div class="tabs-menu w-tab-menu" role="tablist"><a data-w-tab="Author Picks"
+        class="tab-button w-inline-block w-tab-link w--current" id="w-tabs-0-data-w-tab-0"
+        href="#w-tabs-0-data-w-pane-0" role="tab" aria-controls="w-tabs-0-data-w-pane-0"
+        aria-selected="true">
+        <div>Author Picks</div>
+        </a><a data-w-tab="Featured" class="tab-button w-inline-block w-tab-link" tabindex="-1"
+        id="w-tabs-0-data-w-tab-1" href="#w-tabs-0-data-w-pane-1" role="tab"
+        aria-controls="w-tabs-0-data-w-pane-1" aria-selected="false">
+        <div>Featured</div>
+        </a><a data-w-tab="New" class="tab-button w-inline-block w-tab-link" tabindex="-1"
+        id="w-tabs-0-data-w-tab-2" href="#w-tabs-0-data-w-pane-2" role="tab"
+        aria-controls="w-tabs-0-data-w-pane-2" aria-selected="false">
+        <div>New</div>
+        </a>
+        </div>
+        </div> *@
                 <div class="item-list-wrapper w-dyn-list">
                     <div role="list" class="item-list w-dyn-items w-row">
 
@@ -193,8 +193,9 @@
                                             @if (!Model.Bookmarked(movie.MovieId))
                                             {
                                                 <div class="item-number" style="right:-51px">
-                                                    <button style="background-color:transparent;
-                                                    height:30px" asp-page-handler="Add" asp-route-MovieId="@movie.MovieId">
+                                                    <button title='add "@movie.Title" to your Watchlist' style="background-color:transparent;
+                                                    height:30px" asp-page-handler="Add"
+                                                        asp-route-MovieId="@movie.MovieId">
                                                         <span class="material-symbols-outlined">
                                                             bookmark_add
                                                         </span>
@@ -204,9 +205,9 @@
                                             else
                                             {
                                                 <div class="item-number" style="right:-51px">
-                                                    <button style="background-color:transparent;
-                                                    height:30px;"
-                                                    asp-page-handler="Remove" asp-route-MovieId="@movie.MovieId">
+                                                    <button title='remove "@movie.Title" from your Watchlist' style="background-color:transparent;
+                                                    height:30px;" asp-page-handler="Remove"
+                                                        asp-route-MovieId="@movie.MovieId">
                                                         <span class="material-symbols-outlined">
                                                             bookmark
                                                         </span>
@@ -237,13 +238,13 @@
         </div>
     }
     <!-- SEARCH SECTION -->
-    <div class="section">
+    <div id="search" class="section">
         <div class="container push-up w-container">
             <div class="search-wrapper">
                 <div class="search-title">Search for a Movie by Tile and/or By Year:</div>
                 <form class="search-form w-clearfix w-form">
                     <input class="search-field w-input" maxlength="256" asp-for="query" placeholder="search for movie..."
-                        type="search" id="search">
+                        type="search">
                     <input type="submit" class="search-button w-button" value=".">
                 </form>
             </div>
@@ -252,7 +253,16 @@
 }
 else
 {
+
+    <partial name="_HeaderPartial" />
     <div class="section">
         <div class="section-message">No Movies are available right now.</div>
     </div>
 }
+
+<partial name="_FooterPartial" />
+
+
+<script>
+
+</script>
