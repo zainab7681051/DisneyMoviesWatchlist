@@ -4,47 +4,42 @@
 @{
     ViewData["Title"] = "Log in";
 }
+<partial name="_HeaderPartial" />
+<div class="image-header contact">
+    <div class="image-header-overlay contact-overlay">
+        <div class="container w-container">
+            <div class="contact-block">
+                <div class="form-title-wrapper">
+                    <div class="form-title">Use a local account to log in</div>
+                    <h1 class="subpage-title large">Log In</h1>
+                </div>
+                <div class="form w-form">
+                    <form id="account" method="post">
+                        <div class="form-row w-row">
+                            <div class="form-column w-col w-col-6">
+                                <input asp-for="Input.Email" class="text-field w-input" autocomplete="username"
+                                    aria-required="true" placeholder="Your Email" />
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-column w-col w-col-6"><input asp-for="Input.Password" type="text"
+                                    class="text-field w-input" placeholder="Your Password" required="true"></div>
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
 
-<h1>@ViewData["Title"]</h1>
-<div class="container mt-4">
-    <div class="row">
-        <section>
-            <form id="account" method="post">
-                <h2>Use a local account to log in.</h2>
-                <hr />
-                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-                <div class="form-floating mb-3">
-                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true"
-                        placeholder="name@example.com" />
-                    <label asp-for="Input.Email" class="form-label">Email</label>
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        <button id="registerSubmit" type="submit" class="button color w-button">Register</button>
+                        <div asp-validation-summary="ModelOnly" class="w-form-fail" role="alert"></div>
+                    </form>
+                    <div class="w-form-note">
+                        <div>Already have an account? <a asp-page="./Register"
+                                asp-route-returnUrl="@Model.ReturnUrl">Sign up!</a></div>
+                    </div>
                 </div>
-                <div class="form-floating mb-3">
-                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password"
-                        aria-required="true" placeholder="password" />
-                    <label asp-for="Input.Password" class="form-label">Password</label>
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="checkbox mb-3">
-                    <label asp-for="Input.RememberMe" class="form-label">
-                        <input class="form-check-input" asp-for="Input.RememberMe" />
-                        @Html.DisplayNameFor(m => m.Input.RememberMe)
-                    </label>
-                </div>
-                <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
-                </div>
-                <div class="mt-2">
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new
-                            user</a>
-                    </p>
-                </div>
-            </form>
-        </section>
+            </div>
+        </div>
     </div>
 </div>
 
+<script>window.alert = function() {};</script>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

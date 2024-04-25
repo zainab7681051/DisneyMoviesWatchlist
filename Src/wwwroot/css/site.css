@@ -15,7 +15,6 @@ html {
   padding-top: 140px;
   padding-bottom: 0px;
   background-color: #070c0f;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#081b27), to(rgba(8, 27, 39, 0.8))), url("https://assets.website-files.com/59f5ab35fccfea0001f70443/5a099901d345d400015ce0a7_Photo-8.jpg");
   background-image: linear-gradient(180deg, #081b27, rgba(8, 27, 39, 0.8)), url("../footer-pic.jfif");
   background-position: 0px 0px, 50% 50%;
   background-size: auto, cover;
@@ -32,6 +31,43 @@ html {
   transform-style: preserve-3d;
 }
 
+.logo.small {
+  margin-top: 34px;
+  scale: 7.4;
+}
+.w-form-note {
+  display: flow;
+  padding: 20px;
+  text-align: center;
+  background-color: transparent;
+  color: #fff;
+}
+
+.w-form-fail{
+  flex-direction: column;
+}
+.w-form-fail {
+  border-radius: 11px;
+  display: none;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #b63939;
+  font-size: 23px;
+  color: #000;
+  font-weight: 700;
+}
+.w-form-fail.validation-summary-errors{
+  display:block;
+}
+.text-danger{
+  font-size: 20px;
+  color:#ff1515;
+}
+.image-header.contact {
+  height: 100vh;
+  min-height: 880px;
+  background-image: url("../footer-pic.jfif");
+}
 @media screen and (max-width: 767px) {
 
   .hero-section {
@@ -67,6 +103,12 @@ html {
   .bookmark-circle {
     transform: translate3d(0px, 50px, 0px)
   }
+
+  .logo.small {
+    margin-top: 25px;
+    scale: 6.1;
+    margin-left: 45px;
+}
 }
 
 @media screen and (min-width: 768px) {
