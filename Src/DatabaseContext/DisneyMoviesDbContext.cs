@@ -29,7 +29,13 @@ public partial class DisneyMoviesDbContext : IdentityDbContext
         modelBuilder.Entity<Movie>(entity =>
         {
             entity.HasKey(e => e.MovieId);
-
+            entity.HasKey(e => e.MovieId);
+            
+            /*
+            // //when using "dotnet ef add migrations <MigrationLAbel> and then "dotnet ef database update" make sure to let the scaffolder create a new empty table else tou will get eror "disney_movies already exists"
+            // entity.ToTable("empty");
+            */
+            
             entity.ToTable("disney_movies");
 
             entity.Property(e => e.Directors).HasColumnName("directors");
