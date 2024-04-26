@@ -17,20 +17,21 @@
                     <form id="account" method="post">
                         <div class="form-row w-row">
                             <div class="form-column w-col w-col-6">
-                                <input asp-for="Input.Email" class="text-field w-input" autocomplete="username"
+                                <input asp-for="Input.Email" class="text-field w-input" autocomplete="off"
                                     aria-required="true" placeholder="Your Email" />
                                 <span asp-validation-for="Input.Email" class="text-danger"></span>
                             </div>
-                            <div class="form-column w-col w-col-6"><input asp-for="Input.Password" type="text"
-                                    class="text-field w-input" placeholder="Your Password" required="true"></div>
-                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            <div class="form-column w-col w-col-6"><input asp-for="Input.Password" type="password"
+                                    class="text-field w-input" placeholder="Your Password" required="true" autocomplete="off">
+                                    
+                            <span asp-validation-for="Input.Password" class="text-danger"></span></div>
                         </div>
 
-                        <button id="registerSubmit" type="submit" class="button color w-button">Register</button>
+                        <button id="registerSubmit" type="submit" class="button color w-button">Login</button>
                         <div asp-validation-summary="ModelOnly" class="w-form-fail" role="alert"></div>
                     </form>
                     <div class="w-form-note">
-                        <div>Already have an account? <a asp-page="./Register"
+                        <div>Don't have an account? <a asp-page="./Register"
                                 asp-route-returnUrl="@Model.ReturnUrl">Sign up!</a></div>
                     </div>
                 </div>

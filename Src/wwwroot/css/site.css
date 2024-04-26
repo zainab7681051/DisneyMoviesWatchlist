@@ -53,8 +53,8 @@ html {
   padding: 10px;
   background-color: #b63939;
   font-size: 23px;
-  color: #000;
-  font-weight: 700;
+  color: #fff;
+  font-weight: 500;
 }
 .w-form-fail.validation-summary-errors{
   display:block;
@@ -67,6 +67,11 @@ html {
   height: 100vh;
   min-height: 880px;
   background-image: url("../footer-pic.jfif");
+}
+.w-container .w-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 @media screen and (max-width: 767px) {
 
@@ -109,11 +114,30 @@ html {
     scale: 6.1;
     margin-left: 45px;
 }
+
+.text-danger{
+  font-size: 16px;
+  color:#ff1515;
+}
+.button {
+  padding: 14px 20px 10px;
+  line-height: 22px;
+}
+.w-form-fail{
+  font-size: 20px;
+  font-weight: 400;
+}
 }
 
 @media screen and (min-width: 768px) {
 
   .dynamic-header-overlay {
     height: 110%;
+  }
+
+  .button.color:hover{
+    background-color:#fff;
+    color: #f1b722;
+    transition: all .3s ease-in;
   }
 }
