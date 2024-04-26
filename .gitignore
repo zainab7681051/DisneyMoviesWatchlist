@@ -477,7 +477,6 @@ $RECYCLE.BIN/
 *.lnk
 
 Database/
-Migrations/
 [Nn]otes.txt
 DisneyMoviesWatchlist-publish/
 .mono/
