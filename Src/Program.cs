@@ -5,7 +5,6 @@ using DisneyMoviesWatchlist.Src.Repository;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddDbContext<DisneyMoviesDbContext>();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(
