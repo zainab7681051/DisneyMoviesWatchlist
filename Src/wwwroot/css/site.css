@@ -73,6 +73,9 @@ html {
   flex-wrap: wrap;
   justify-content: center;
 }
+.text-field.w-input{
+  background-color: transparent;
+}
 @media screen and (max-width: 767px) {
 
   .hero-section {
