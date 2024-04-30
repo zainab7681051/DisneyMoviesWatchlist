@@ -29,9 +29,7 @@
                                 @if (!Model.Bookmarked(Model.DisneyMovie.MovieId))
                                 {
                                     <div class="bookmark-circle review-circle">
-                                        <button title='add "@Model.DisneyMovie.Title" to your Watchlist' style="background-color:transparent;
-                                                    height:30px;" asp-page-handler="Add"
-                                            asp-route-MovieId="@Model.DisneyMovie.MovieId">
+                                        <button title='add "@Model.DisneyMovie.Title" to your Watchlist' style="background-color:transparent;height:30px;" asp-page-handler="Add" asp-route-MovieId="@Model.DisneyMovie.MovieId">
                                             <span style="font-size:1.3em" class="material-symbols-outlined">
                                                 bookmark_add
                                             </span>
@@ -95,7 +93,7 @@
 }
 else
 {
-    <div class="section">
+    <div class="section" style="height:100%;">
         <div class="section-message">404, Movie does not exist.</div>
     </div>
 }

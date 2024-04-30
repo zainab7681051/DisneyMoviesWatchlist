@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+
 html {
   overflow-y: scroll;
   scroll-behavior: smooth;
 }
 
 .section-message {
-  margin-top: 15px;
+  margin-top: 2rem;
   color: #8ea3b3;
   font-size: 35px;
   font-weight: 300;
@@ -32,8 +34,11 @@ html {
 }
 
 .logo.small {
-  margin-top: 34px;
-  scale: 7.4;
+    font-family: "Dancing Script", cursive;
+    margin-top: 5px;
+    color: #f1b722;
+    font-weight: 700;
+    font-size: 3rem;
 }
 .w-form-note {
   display: flow;
@@ -76,60 +81,57 @@ html {
 .text-field.w-input{
   background-color: transparent;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 767px){
 
-  .hero-section {
-    margin-top: 0px;
+    .hero-section {
+      margin-top: 0px;
+    }
+
+    .hero-column {
+      height: fit-content;
+    }
+
+    .container.push-up {
+      margin-top: unset;
+    }
+
+    .search-wrapper {
+      display: block;
+      margin: 50px auto 50px;
+    }
+
+    .dynamic-page-header {
+      height: fit-content;
+      min-height: 0;
+    }
+
+    .item-number {
+      top: 8%
+    }
+
+    .section-message {
+      font-size: 25px;
+    }
+
+    .bookmark-circle {
+      transform: translate3d(0px, 50px, 0px)
+    }
+
+  .text-danger{
+    font-size: 16px;
+    color:#ff1515;
   }
-
-  .hero-column {
-    height: fit-content;
+  .button {
+    padding: 14px 20px 10px;
+    line-height: 22px;
   }
-
-  .container.push-up {
-    margin-top: unset;
+  .w-form-fail{
+    font-size: 20px;
+    font-weight: 400;
   }
-
-  .search-wrapper {
-    display: block;
-    margin: 50px auto 50px;
+  .bookmark-circle.review-circle button {
+        transform: translateY(-3px);
   }
-
-  .dynamic-page-header {
-    height: fit-content;
-    min-height: 0;
-  }
-
-  .item-number {
-    top: 8%
-  }
-
-  .section-message {
-    font-size: 25px;
-  }
-
-  .bookmark-circle {
-    transform: translate3d(0px, 50px, 0px)
-  }
-
-  .logo.small {
-    margin-top: 25px;
-    scale: 6.1;
-    margin-left: 45px;
-}
-
-.text-danger{
-  font-size: 16px;
-  color:#ff1515;
-}
-.button {
-  padding: 14px 20px 10px;
-  line-height: 22px;
-}
-.w-form-fail{
-  font-size: 20px;
-  font-weight: 400;
-}
 }
 
 @media screen and (min-width: 768px) {
@@ -138,9 +140,13 @@ html {
     height: 110%;
   }
 
-  .button.color:hover{
+  .button.color:hover {
     background-color:#fff;
     color: #f1b722;
     transition: all .3s ease-in;
   }
+  .logo.small{
+    margin-top: 13px;
+  }
 }
+
