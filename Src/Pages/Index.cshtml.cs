@@ -30,7 +30,7 @@ public class IndexModel : PageModel
     public void OnGet()
     {
         HeroSectionItems = new List<Movie>();
-        List<MovieDto> Movies = movieRepo.GetAll(query);
+        Movies = movieRepo.GetAll(query);
         if (string.IsNullOrEmpty(query))
         {
             Random rnd = new Random();

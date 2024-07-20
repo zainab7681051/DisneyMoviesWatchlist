@@ -28,7 +28,7 @@ public class MovieRepository : IMovieRepository
             movies = context.DisneyMovies;
         }
         movies = movies.OrderByDescending(s => s.MovieId);
-        var result = (movies.Select(m => m.MovieLessDetail())).ToList();
+        var result = movies.Select(m => m.MovieLessDetail()).ToList();
         return result;
     }
 
