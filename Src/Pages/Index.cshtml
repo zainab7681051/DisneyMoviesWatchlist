@@ -51,8 +51,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <img src="@Model.HeroSectionItems[0].Image" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
-                                        class="item-image">
+                                    <div style="background-image: url(&quot;@Model.HeroSectionItems[0].Image&quot;); transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
+                                        class="item-image"></div>
                                 </a></div>
                         </div>
                     </div>
@@ -89,8 +89,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <img src="@Model.HeroSectionItems[1].Image" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
-                                        class="item-image">
+                                    <div style="background-image: url(&quot;@Model.HeroSectionItems[1].Image&quot;); transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
+                                        class="item-image"></div>
                                 </a></div>
                         </div>
                     </div>
@@ -176,8 +176,9 @@
                         {
                             <div role="listitem" class="item w-dyn-item w-col w-col-3">
                                 <div class="item-block">
-                                    <a asp-page="./Movie" asp-route-MovieId="@movie.MovieId">
-                                        <img src="@movie.Image" alt="@movie.Title">
+                                    <a asp-page="./Movie" asp-route-MovieId="@movie.MovieId"
+                                        style="background-image:url(&quot;@movie.Image&quot;)"
+                                        class="item-image-block poster-format w-inline-block">
                                     </a>
 
                                     @if (SignInManager.IsSignedIn(User))
@@ -227,6 +228,12 @@
                             </div>
                         }
                     </div>
+                    <button disabled='"@(Model.pageNumber == 0)"' class="page-arrow left" asp-page-handler="NextPage"> 
+                        &larr; 
+                    </button>
+                    <button disabled='"@Model.lastPage"' class="page-arrow right" asp-page-handler="PrevPage"> 
+                        &rarr; 
+                    </button>
                 </div>
             </div>
         </div>

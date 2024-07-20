@@ -16,21 +16,42 @@ public class MovieRepository : IMovieRepository
     }
 
 
-    public List<MovieDto> GetAll(string query)
+    public List<MovieDto> GetAll(string query, int pageNumber, out bool lastPage)
     {
+        const int chunkSize = 10;
+        const int start = start * chunkSize;
         IQueryable<Movie> movies;
+        
         if (!string.IsNullOrEmpty(query))
         {
-            movies = context.DisneyMovies.Where(m => m.Title.Contains(query));
+            movies = context.DisneyMovies
+                .Where(m => (m.Title.Contains(query) || m.Year.Contains(query) || m.Summary.Contains(query) || m.Stars.Contains(query) || m.Directors.Contains(query)) && m.MovieId >= start)
+                .OrderByDescending(s => s.MovieId)
+                .Take(chunkSize);
         }
         else
         {
-            movies = context.DisneyMovies;
+            movies = context.DisneyMovies
+                .Where(m => m.MovieId >= start)
+                .OrderByDescending(s => s.MovieId)
+                .Take(chunkSize);
         }
-        movies = movies.OrderByDescending(s => s.MovieId);
+        
         var result = movies.Select(m => m.MovieLessDetail()).ToList();
+        
+        if (result.Count > chunkSize - 1)
+        {
+            lastPage = false;
+            result = result.Take(chunkSize - 1).ToList();
+        }
+        else
+        {
+            lastPage = true;
+        }
+        
         return result;
     }
+
 
     public Movie GetOne(int MovieId)
     {

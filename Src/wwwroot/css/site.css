@@ -97,6 +97,18 @@ html {
   margin: auto;
 }
 
+.page-arrow {
+  display: inline-block;
+  width: 65px;
+  border-radius: 4px;
+  color: #f1b722;
+  border: solid 2px;
+  text-align: center;
+  font-size: 45px;
+  font-family: monospace;
+  text-decoration: none;
+}
+
 @media screen and (max-width: 767px) {
 
   .hero-section {

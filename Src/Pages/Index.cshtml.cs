@@ -14,7 +14,8 @@ public class IndexModel : PageModel
 
     public List<MovieDto> Movies { get; set; }
     public List<Movie> HeroSectionItems { get; set; }
-
+    public int pageNumber {get; set;}
+    public bool islastPage {get; set;}
     [BindProperty(SupportsGet = true)]
     public string query { get; set; }
 
@@ -30,7 +31,9 @@ public class IndexModel : PageModel
     public void OnGet()
     {
         HeroSectionItems = new List<Movie>();
-        Movies = movieRepo.GetAll(query);
+        let last = islastPage;
+        Movies = movieRepo.GetAll(query, pageNumber, out last);
+        islastPage = last;
         if (string.IsNullOrEmpty(query))
         {
             Random rnd = new Random();
@@ -63,5 +66,14 @@ public class IndexModel : PageModel
     {
         string userId = userManager.GetUserId(User);
         return movieRepo.IsInWatchList(userId, MovieId);
+    }
+    public IActionResult OnPostNextPage(){
+        pageNumber++;
+        return RedirectToPage();
+    }
+    
+    public IActionResult OnPostPrevPage(){
+        pageNumber--;
+        return RedirectToPage();
     }
 }
