@@ -29,20 +29,15 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
-        HeroSectionItems = new();
-        var AllMovies = movieRepo.GetAll(query);
-        Movies = AllMovies.Select(m => m.MovieLessDetail()).ToList();
-        if (!string.IsNullOrEmpty(query))
+        HeroSectionItems = new List<Movie>();
+        List<MovieDto> Movies = movieRepo.GetAll(query);
+        if (string.IsNullOrEmpty(query))
         {
-            Movies = Movies.Where(s => s.Title.Contains(query, StringComparison.OrdinalIgnoreCase) || s.Year.Contains(query, StringComparison.OrdinalIgnoreCase)).ToList();
-        }
-        else
-        {
-            Random rnd = new();
+            Random rnd = new Random();
             for (int i = 0; i < 4; i++)
             {
-                int randomNumber = rnd.Next(0, 72);
-                HeroSectionItems.Add(AllMovies[randomNumber]);
+                int randomNumber = rnd.Next(1, 73);
+                HeroSectionItems.Add(movieRepo.GetOne(randomNumber));
             }
         }
 
@@ -50,7 +45,7 @@ public class IndexModel : PageModel
 
     public IActionResult OnPostAdd(int MovieId)
     {
-        var userId = userManager.GetUserId(User);
+        string userId = userManager.GetUserId(User);
         movieRepo.AddToWatchList(userId, MovieId);
         
         return RedirectToPage();
@@ -58,7 +53,7 @@ public class IndexModel : PageModel
 
     public IActionResult OnPostRemove(int MovieId)
     {
-        var userId = userManager.GetUserId(User);
+        string userId = userManager.GetUserId(User);
         movieRepo.RemoveFromWatchList(userId, MovieId);
         
         return RedirectToPage();
@@ -66,7 +61,7 @@ public class IndexModel : PageModel
 
     public bool Bookmarked(int MovieId)
     {
-        var userId = userManager.GetUserId(User);
+        string userId = userManager.GetUserId(User);
         return movieRepo.IsInWatchList(userId, MovieId);
     }
 }
