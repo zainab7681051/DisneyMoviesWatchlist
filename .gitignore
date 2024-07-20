@@ -476,7 +476,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-Database/
 [Nn]otes.txt
 DisneyMoviesWatchlist-publish/
 .mono/

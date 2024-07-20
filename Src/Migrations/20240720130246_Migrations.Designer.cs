@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DisneyMoviesWatchlist.Migrations
 {
     [DbContext(typeof(DisneyMoviesDbContext))]
-    [Migration("20240425135159_Migrations")]
+    [Migration("20240720130246_Migrations")]
     partial class Migrations
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace DisneyMoviesWatchlist.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .UseCollation("NOCASE")
-                .HasAnnotation("ProductVersion", "7.0.9");
+                .HasAnnotation("ProductVersion", "8.0.7");
 
             modelBuilder.Entity("DisneyMoviesWatchlist.Src.Models.Movie", b =>
                 {

@@ -34,12 +34,13 @@ html {
 }
 
 .logo.small {
-    font-family: "Dancing Script", cursive;
-    margin-top: 5px;
-    color: #f1b722;
-    font-weight: 700;
-    font-size: 3rem;
+  font-family: "Dancing Script", cursive;
+  margin-top: 5px;
+  color: #f1b722;
+  font-weight: 700;
+  font-size: 3rem;
 }
+
 .w-form-note {
   display: flow;
   padding: 20px;
@@ -48,9 +49,10 @@ html {
   color: #fff;
 }
 
-.w-form-fail{
+.w-form-fail {
   flex-direction: column;
 }
+
 .w-form-fail {
   border-radius: 11px;
   display: none;
@@ -61,76 +63,84 @@ html {
   color: #fff;
   font-weight: 500;
 }
-.w-form-fail.validation-summary-errors{
-  display:block;
+
+.w-form-fail.validation-summary-errors {
+  display: block;
 }
-.text-danger{
+
+.text-danger {
   font-size: 20px;
-  color:#ff1515;
+  color: #ff1515;
 }
+
 .image-header.contact {
   height: 100vh;
   min-height: 880px;
   background-image: url("../footer-pic.jfif");
 }
+
 .w-container .w-row {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-.text-field.w-input{
+
+.text-field.w-input {
   background-color: transparent;
 }
-@media screen and (max-width: 767px){
 
-    .hero-section {
-      margin-top: 0px;
-    }
+.container.push-up {
+  margin-top: 0px;
+}
 
-    .hero-column {
-      height: fit-content;
-    }
+.search-wrapper {
+  margin: auto;
+}
 
-    .container.push-up {
-      margin-top: unset;
-    }
+@media screen and (max-width: 767px) {
 
-    .search-wrapper {
-      display: block;
-      margin: 50px auto 50px;
-    }
-
-    .dynamic-page-header {
-      height: fit-content;
-      min-height: 0;
-    }
-
-    .item-number {
-      top: 8%
-    }
-
-    .section-message {
-      font-size: 25px;
-    }
-
-    .bookmark-circle {
-      transform: translate3d(0px, 50px, 0px)
-    }
-
-  .text-danger{
-    font-size: 16px;
-    color:#ff1515;
+  .hero-section {
+    margin-top: 0px;
   }
+
+  .hero-column {
+    height: fit-content;
+  }
+
+  .dynamic-page-header {
+    height: fit-content;
+    min-height: 0;
+  }
+
+  .item-number {
+    top: 8%
+  }
+
+  .section-message {
+    font-size: 25px;
+  }
+
+  .bookmark-circle {
+    transform: translate3d(0px, 50px, 0px)
+  }
+
+  .text-danger {
+    font-size: 16px;
+    color: #ff1515;
+  }
+
   .button {
     padding: 14px 20px 10px;
     line-height: 22px;
   }
-  .w-form-fail{
+
+  .w-form-fail {
     font-size: 20px;
     font-weight: 400;
   }
+
   .bookmark-circle.review-circle button {
-        transform: translateY(-3px);
+    transform: translateY(-3px);
   }
 }
 
@@ -141,12 +151,16 @@ html {
   }
 
   .button.color:hover {
-    background-color:#fff;
+    background-color: #fff;
     color: #f1b722;
     transition: all .3s ease-in;
   }
-  .logo.small{
+
+  .logo.small {
     margin-top: 13px;
   }
-}
 
+  .search-wrapper {
+    width: 70%;
+  }
+}

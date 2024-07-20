@@ -17,7 +17,7 @@ namespace DisneyMoviesWatchlist.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .UseCollation("NOCASE")
-                .HasAnnotation("ProductVersion", "7.0.9");
+                .HasAnnotation("ProductVersion", "8.0.7");
 
             modelBuilder.Entity("DisneyMoviesWatchlist.Src.Models.Movie", b =>
                 {
