@@ -156,7 +156,8 @@
                 <div class="search-wrapper">
                     <div class="search-title">Search for a Movie by Tile and/or By Year:</div>
                     <form class="search-form w-clearfix w-form">
-                        <input class="search-field w-input" maxlength="256" asp-for="query" placeholder="Search for a Movie by Tile and/or By Year..." type="search">
+                        <input class="search-field w-input" maxlength="256" asp-for="query"
+                            placeholder="Search for a Movie by Tile and/or By Year..." type="search">
                         <input type="submit" class="search-button w-button" value=".">
                     </form>
                 </div>
@@ -171,16 +172,14 @@
                 </div>
                 <div class="item-list-wrapper w-dyn-list">
                     <div role="list" class="item-list w-dyn-items w-row">
-
                         @foreach (var movie in Model.Movies)
                         {
                             <div role="listitem" class="item w-dyn-item w-col w-col-3">
                                 <div class="item-block">
                                     <a asp-page="./Movie" asp-route-MovieId="@movie.MovieId"
-                                        style="background-image:url(&quot;@movie.Image&quot;)"
+                                        style="background-image:url('@movie.Image')"
                                         class="item-image-block poster-format w-inline-block">
                                     </a>
-
                                     @if (SignInManager.IsSignedIn(User))
                                     {
                                         <div class="item-number" style="right:51px">@movie.Rating</div>
@@ -188,24 +187,20 @@
                                             @if (!Model.Bookmarked(movie.MovieId))
                                             {
                                                 <div class="item-number" style="right:-51px">
-                                                    <button title='add "@movie.Title" to your Watchlist' style="background-color:transparent;
-                                                    height:30px" asp-page-handler="Add"
+                                                    <button title='add "@movie.Title" to your Watchlist'
+                                                        style="background-color:transparent; height:30px" asp-page-handler="Add"
                                                         asp-route-MovieId="@movie.MovieId">
-                                                        <span class="material-symbols-outlined">
-                                                            bookmark_add
-                                                        </span>
+                                                        <span class="material-symbols-outlined">bookmark_add</span>
                                                     </button>
                                                 </div>
                                             }
                                             else
                                             {
                                                 <div class="item-number" style="right:-51px">
-                                                    <button title='remove "@movie.Title" from your Watchlist' style="background-color:transparent;
-                                                    height:30px;" asp-page-handler="Remove"
+                                                    <button title='remove "@movie.Title" from your Watchlist'
+                                                        style="background-color:transparent; height:30px;" asp-page-handler="Remove"
                                                         asp-route-MovieId="@movie.MovieId">
-                                                        <span class="material-symbols-outlined">
-                                                            bookmark
-                                                        </span>
+                                                        <span class="material-symbols-outlined">bookmark</span>
                                                     </button>
                                                 </div>
                                             }
@@ -215,8 +210,8 @@
                                     {
                                         <div class="item-number">@movie.Rating</div>
                                     }
-                                    <a asp-page="./Movie" asp-route-MovieId="@movie.MovieId" class="item-block-title">@movie.Title
-                                    </a>
+                                    <a asp-page="./Movie" asp-route-MovieId="@movie.MovieId"
+                                        class="item-block-title">@movie.Title</a>
                                     <div class="info-wrapper small">
                                         <div class="info-block">
                                             <img src="https://assets.website-files.com/59f5ab35fccfea0001f70443/5a0973aee1339f0001a7cebe_tag.svg"
@@ -228,12 +223,10 @@
                             </div>
                         }
                     </div>
-                    <button disabled='"@(Model.pageNumber == 0)"' class="page-arrow left" asp-page-handler="NextPage"> 
-                        &larr; 
-                    </button>
-                    <button disabled='"@Model.lastPage"' class="page-arrow right" asp-page-handler="PrevPage"> 
-                        &rarr; 
-                    </button>
+                    <form class="arrow-wrapper" method="post">
+                        <button class="page-arrow left" asp-page-handler="Prev">&larr;</button>
+                        <button class="page-arrow right" asp-page-handler="Next">&rarr;</button>
+                    </form>
                 </div>
             </div>
         </div>

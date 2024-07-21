@@ -97,8 +97,14 @@ html {
   margin: auto;
 }
 
+.arrow-wrapper {
+  display: block;
+  margin: auto;
+}
+
 .page-arrow {
-  display: inline-block;
+  display: block;
+  margin: 1rem auto;
   width: 65px;
   border-radius: 4px;
   color: #f1b722;
