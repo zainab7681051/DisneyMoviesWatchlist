@@ -20,6 +20,7 @@ public class MovieRepository : IMovieRepository
     {
         const int chunkSize = 9;
         int start = (pageNumber - 1) * chunkSize;
+        Console.WriteLine('here');
         IQueryable<Movie> movies;
         
         if (!string.IsNullOrEmpty(query))
