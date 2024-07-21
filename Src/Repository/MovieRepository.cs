@@ -16,37 +16,42 @@ public class MovieRepository : IMovieRepository
     }
 
 
-    public List<MovieDto> GetAll(string query, int pageNumber, out bool lastPage)
+    public List<MovieDto> GetAll(string query, int pageNumber, out bool islastPage)
     {
-        const int chunkSize = 8;
+        const int chunkSize = 12;
         int start = (pageNumber - 1) * chunkSize;
-        IQueryable<Movie> movies;
-        
+        List<MovieDto> movies;
+
         if (!string.IsNullOrEmpty(query))
         {
             movies = context.DisneyMovies
-                .Where(m => (m.Title.Contains(query) || m.Year.Contains(query) || m.Summary.Contains(query) || m.Stars.Contains(query) || m.Directors.Contains(query)))
-                .Take(chunkSize + 1 );
+                .ToList()
+                .Where((m, index) => (m.Title.Contains(query) || m.Year.Contains(query) || m.Summary.Contains(query) || m.Stars.Contains(query) || m.Directors.Contains(query)) && index > start)
+                .Take(chunkSize + 1)
+                .Select(m => m.MovieLessDetail())
+                .ToList();
         }
         else
         {
             movies = context.DisneyMovies
-                .Where(m => m.MovieId > start)
-                .Take(chunkSize + 1);
+                .ToList()
+                .Where((m, index) => index > start)
+                .Take(chunkSize + 1)
+                .Select(m => m.MovieLessDetail())
+                .ToList();
         }
-        
-        
-        var result = movies.Select(m => m.MovieLessDetail()).ToList();
-        if (result.Count > chunkSize)
+
+
+        if (movies.Count > chunkSize)
         {
-            lastPage = false;
-            result = result.Take(chunkSize).ToList();
+            islastPage = false;
+            movies = movies.Take(chunkSize).ToList();
         }
         else
         {
-            lastPage = true;
+            islastPage = true;
         }
-        return result;
+        return movies;
     }
 
 
