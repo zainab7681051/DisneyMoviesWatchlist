@@ -18,14 +18,14 @@ public class MovieRepository : IMovieRepository
 
     public List<MovieDto> GetAll(string query, int pageNumber, out bool lastPage)
     {
-        const int chunkSize = 9;
+        const int chunkSize = 8;
         int start = (pageNumber - 1) * chunkSize;
         IQueryable<Movie> movies;
         
         if (!string.IsNullOrEmpty(query))
         {
             movies = context.DisneyMovies
-                .Where(m => (m.Title.Contains(query) || m.Year.Contains(query) || m.Summary.Contains(query) || m.Stars.Contains(query) || m.Directors.Contains(query)) && m.MovieId > start)
+                .Where(m => (m.Title.Contains(query) || m.Year.Contains(query) || m.Summary.Contains(query) || m.Stars.Contains(query) || m.Directors.Contains(query)))
                 .Take(chunkSize + 1 );
         }
         else

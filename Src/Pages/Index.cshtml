@@ -232,9 +232,11 @@ else
                         }
                     </div>
                     <div class="arrow-wrapper">
-                        <a href="?page=@(Model.page - 1)" class="@(Model.page <= 1 ? "inactive" : "") page-arrow left">
+                        <a href="?@(!string.IsNullOrEmpty(Model.query) ? $"query={Model.query}&" :"")page=@(Model.page - 1)"
+                            class="@(Model.page <= 1 ? "inactive" : "") page-arrow left">
                             &larr; </a>
-                        <a href="?page=@(Model.page + 1)" class="@(Model.islastPage ? "inactive" : "") page-arrow right">
+                        <a href="?@(!string.IsNullOrEmpty(Model.query) ? $"query={Model.query}&" :"")page=@(Model.page + 1)"
+                            class="@(Model.islastPage ? "inactive" : "") page-arrow right">
                             &rarr; </a>
                     </div>
                 </div>
