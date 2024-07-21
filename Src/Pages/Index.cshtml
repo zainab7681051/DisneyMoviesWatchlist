@@ -223,9 +223,11 @@
                             </div>
                         }
                     </div>
-                    <form class="arrow-wrapper" method="post">
-                        <button class="page-arrow left" asp-page-handler="Prev">&larr;</button>
-                        <button class="page-arrow right" asp-page-handler="Next">&rarr;</button>
+                    <form class="arrow-wrapper">
+                        <input style="visibility: hidden" asp-for="page" value="@Model.page" type="search">
+                        @* <button type="submit" class="page-arrow left" asp-page-handler="Prev">&larr;</button>
+                <button type="submit" class="page-arrow right" asp-page-handler="Next">&rarr;</button> *@
+                        <input type="submit" class="page-arrow right" value="&rarr;">
                     </form>
                 </div>
             </div>

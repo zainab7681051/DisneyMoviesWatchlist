@@ -17,7 +17,7 @@ public class IndexModel : PageModel
     
     public bool islastPage {get; set;}
     [BindProperty(SupportsGet = true)]
-    public int page {get; set;} = 1;
+    public int page {get; set;}
     [BindProperty(SupportsGet = true)]
     public string query { get; set; }
 
@@ -35,7 +35,7 @@ public class IndexModel : PageModel
         HeroSectionItems = new List<Movie>();
         bool last = islastPage;
         Console.WriteLine("page is 🍧🍧🍧🍧🍧🍧🍧🍧🍧🍧 {0}", page);
-        Movies = movieRepo.GetAll(query, 5, out last);
+        Movies = movieRepo.GetAll(query, ++page, out last);
         islastPage = last;
         if (string.IsNullOrEmpty(query) && page > 1)
         {
@@ -73,7 +73,7 @@ public class IndexModel : PageModel
     public IActionResult OnPostNext(){
         Console.WriteLine("HERERRERERERERERER🍓🍓🍓🍓🍓🍓🍓-----");
         page++;
-        return RedirectToPage("./Index", new { page = page});
+        return RedirectToPage();
     }
     
     public IActionResult OnPostPrev(){
