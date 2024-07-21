@@ -16,7 +16,7 @@ public class IndexModel : PageModel
     public List<Movie> HeroSectionItems { get; set; }
     
     public bool islastPage {get; set;}
-    [BindProperty(SupportsGet = true)]
+    [FromQuery(Name="page")]
     public int page {get; set;}
     [BindProperty(SupportsGet = true)]
     public string query { get; set; }
@@ -28,16 +28,16 @@ public class IndexModel : PageModel
     {
         this.movieRepo = movieRepo;
         this.userManager = userManager;
+        this.page = 1;
     }
 
     public void OnGet()
     {
         HeroSectionItems = new List<Movie>();
         bool last = islastPage;
-        Console.WriteLine("page is 🍧🍧🍧🍧🍧🍧🍧🍧🍧🍧 {0}", page);
-        Movies = movieRepo.GetAll(query, ++page, out last);
+        Movies = movieRepo.GetAll(query, page, out last);
         islastPage = last;
-        if (string.IsNullOrEmpty(query) && page > 1)
+        if (string.IsNullOrEmpty(query) && page == 1)
         {
             Random rnd = new Random();
             for (int i = 0; i < 4; i++)
@@ -69,15 +69,5 @@ public class IndexModel : PageModel
     {
         string userId = userManager.GetUserId(User);
         return movieRepo.IsInWatchList(userId, MovieId);
-    }
-    public IActionResult OnPostNext(){
-        Console.WriteLine("HERERRERERERERERER🍓🍓🍓🍓🍓🍓🍓-----");
-        page++;
-        return RedirectToPage();
-    }
-    
-    public IActionResult OnPostPrev(){
-        page--;
-        return RedirectToPage("./Index", new { page = page});
     }
 }

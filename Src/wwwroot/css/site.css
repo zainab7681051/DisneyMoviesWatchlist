@@ -102,17 +102,29 @@ html {
   margin: auto;
 }
 
-.page-arrow {
+a.page-arrow {
   display: block;
   margin: 1rem auto;
   width: 65px;
   border-radius: 4px;
-  color: #f1b722;
+  color: #fff;
   border: solid 2px;
   text-align: center;
   font-size: 45px;
   font-family: monospace;
   text-decoration: none;
+  transition: all .2s ease;
+}
+
+a.page-arrow:hover {
+  background-color: #f1b722;
+  color: #081b27;
+  border-color: #f1b722;
+}
+
+a.page-arrow.inactive {
+  color: gray;
+  pointer-events: none;
 }
 
 @media screen and (max-width: 767px) {

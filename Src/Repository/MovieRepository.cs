@@ -18,7 +18,6 @@ public class MovieRepository : IMovieRepository
 
     public List<MovieDto> GetAll(string query, int pageNumber, out bool lastPage)
     {
-        Console.WriteLine("get all the juices bby, page:{0} 🍑🍑🍑🍑🍑🍑🍑🍑🍑🍑🍑🍑🍑🍑🍑🍑🍑🍑🍑🍑🍑🍑🍑🍑🍑", pageNumber);
         const int chunkSize = 9;
         int start = (pageNumber - 1) * chunkSize;
         IQueryable<Movie> movies;
@@ -28,14 +27,12 @@ public class MovieRepository : IMovieRepository
             movies = context.DisneyMovies
                 .Where(m => (m.Title.Contains(query) || m.Year.Contains(query) || m.Summary.Contains(query) || m.Stars.Contains(query) || m.Directors.Contains(query)) && m.MovieId > start)
                 .Take(chunkSize + 1 );
-                // .OrderByDescending(s => s.MovieId);
         }
         else
         {
             movies = context.DisneyMovies
                 .Where(m => m.MovieId > start)
                 .Take(chunkSize + 1);
-                // .OrderByDescending(s => s.MovieId);
         }
         
         
@@ -49,9 +46,6 @@ public class MovieRepository : IMovieRepository
         {
             lastPage = true;
         }
-        foreach(var m in result) {
-            Console.WriteLine("movie name 🧁🧁🧁🧁: {0}", m.Title);
-            }
         return result;
     }
 

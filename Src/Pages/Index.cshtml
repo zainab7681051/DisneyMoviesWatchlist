@@ -3,8 +3,16 @@
 @{
     ViewData["Title"] = "Home page";
 }
-@if (Model.Movies != null)
+@if (Model.Movies is null || (!Model.Movies.Any() && string.IsNullOrEmpty(Model.query)))
 {
+    <partial name="_HeaderPartial" />
+    <div class="section">
+        <div class="section-message">No Movies are available right now.</div>
+    </div>
+}
+else
+{
+
     @if (!Model.Movies.Any() && !string.IsNullOrEmpty(Model.query))
     {
         <partial name="_HeaderPartial" />
@@ -223,24 +231,17 @@
                             </div>
                         }
                     </div>
-                    <form class="arrow-wrapper">
-                        <input style="visibility: hidden" asp-for="page" value="@Model.page" type="search">
-                        @* <button type="submit" class="page-arrow left" asp-page-handler="Prev">&larr;</button>
-                <button type="submit" class="page-arrow right" asp-page-handler="Next">&rarr;</button> *@
-                        <input type="submit" class="page-arrow right" value="&rarr;">
-                    </form>
+                    <div class="arrow-wrapper">
+                        <a href="?page=@(Model.page - 1)" class="@(Model.page <= 1 ? "inactive" : "") page-arrow left">
+                            &larr; </a>
+                        <a href="?page=@(Model.page + 1)" class="@(Model.islastPage ? "inactive" : "") page-arrow right">
+                            &rarr; </a>
+                    </div>
                 </div>
             </div>
         </div>
     }
-}
-else
-{
 
-    <partial name="_HeaderPartial" />
-    <div class="section">
-        <div class="section-message">No Movies are available right now.</div>
-    </div>
 }
 
 <partial name="_FooterPartial" />
