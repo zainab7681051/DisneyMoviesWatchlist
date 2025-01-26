@@ -35,7 +35,8 @@ public class MovieRepository : IMovieRepository
         {
             movies = context.DisneyMovies
                 .ToList()
-                .Where((m, index) => index > start)
+                .OrderByDescending(m => m.MovieId)
+                .Where((m, index) => index >= start)
                 .Take(chunkSize + 1)
                 .Select(m => m.MovieLessDetail())
                 .ToList();
